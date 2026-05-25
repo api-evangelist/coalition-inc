@@ -1,0 +1,78 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Coalition
+providerId: coalition-inc
+created: '2026-05-25'
+modified: '2026-05-25'
+tags:
+  - Cyber Insurance
+  - Cybersecurity
+  - Rate Limiting
+  - Quotas
+  - Throttling
+description: >-
+  Rate-limit posture for Coalition's APIs. Coalition does not publish
+  explicit per-key rate limits for either the public Exploit Scoring System
+  API or the partner-gated Active Insurance API as of 2026-05-25. Values
+  below are conservative scaffold defaults consistent with the access model
+  documented on coalitioninc.com.
+headers:
+  limit: X-RateLimit-Limit
+  remaining: X-RateLimit-Remaining
+  reset: X-RateLimit-Reset
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+  serviceUnavailable: 503
+limits:
+  - tier: ess-public
+    name: ESS Public Fair Use
+    scope: ip
+    metric: requests_per_minute
+    limit: 60
+    burst: 120
+    timeFrame: minute
+    applies:
+      - Coalition Exploit Scoring System API
+  - tier: active-insurance-partner
+    name: Active Insurance Partner Default
+    scope: api-key
+    metric: requests_per_minute
+    limit: 600
+    burst: 1200
+    timeFrame: minute
+    applies:
+      - Coalition Active Insurance API
+  - tier: active-insurance-partner
+    name: Active Insurance Partner Daily
+    scope: api-key
+    metric: requests_per_day
+    limit: -1
+    timeFrame: day
+    applies:
+      - Coalition Active Insurance API
+policies:
+  - name: Backoff Strategy
+    description: >-
+      Clients should implement exponential backoff with jitter and respect
+      the Retry-After header on 429 responses.
+  - name: Fair Use
+    description: >-
+      The public ESS API is anonymous and operates under a fair-use policy.
+      Bulk extraction patterns may be throttled at the edge without
+      individual notice.
+  - name: Quote Bind Concurrency
+    description: >-
+      The Active Insurance API targets sub-2-second quote and sub-10-second
+      bindable quote response times under a 99.9% uptime SLA; partners
+      should serialize bind calls per applicant to avoid duplicate policies.
+  - name: Cache Friendliness
+    description: >-
+      ESS API responses are cacheable for short windows. Clients are
+      encouraged to cache CVE detail responses for at least 15 minutes
+      to reduce load on the public surface.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

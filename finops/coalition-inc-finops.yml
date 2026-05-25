@@ -1,0 +1,158 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+provider: Coalition
+providerId: coalition-inc
+publisherName: Coalition
+serviceCategory: Insurance / Developer API
+created: '2026-05-25'
+modified: '2026-05-25'
+tags:
+  - Cyber Insurance
+  - Insurance
+  - Insurtech
+  - Risk Management
+  - FinOps
+  - Cost Management
+  - FOCUS
+description: >-
+  FinOps framework definition for Coalition's API and platform surface.
+  Coalition's primary revenue is insurance premium, not API consumption,
+  so the FinOps mapping below tracks both insurance-line allocation
+  (premium, claims, commissions) and the technical cost surface of any
+  hosted partner integration.
+principles:
+  - name: Visibility
+    description: >-
+      Make API integration cost, premium consumption, and claims-adjacent
+      service spend visible to brokers, MGAs, and finance teams.
+  - name: Allocation
+    description: >-
+      Tag insurance API calls with broker, program, line of business, and
+      market so consumption can be allocated against commission and
+      operating budgets.
+  - name: Optimization
+    description: >-
+      Evaluate quote-to-bind ratios, document generation volume, and
+      webhook delivery cost to keep cost-per-bound-policy in line with
+      target unit economics.
+  - name: Accountability
+    description: >-
+      Assign budget owners for partner-hosted broker portals and shared
+      services (e.g. document signing, e-mail delivery, incident response
+      hotline).
+domains:
+  - name: Understand Usage and Cost
+    capabilities:
+      - Data Ingestion
+      - Allocation
+      - Reporting and Analytics
+      - Anomaly Management
+  - name: Quantify Business Value
+    capabilities:
+      - Planning and Estimating
+      - Forecasting
+      - Budgeting
+      - Benchmarking
+      - Unit Economics
+  - name: Optimize Usage and Cost
+    capabilities:
+      - Rate Optimization
+      - Workload Optimization
+      - Licensing and SaaS
+  - name: Manage the FinOps Practice
+    capabilities:
+      - FinOps Practice Operations
+      - Invoicing and Chargeback
+      - Onboarding Workloads
+billingModel:
+  pricingCategory: Premium-Based
+  billingFrequency: Per-Policy
+  billingCurrency: USD
+  chargeCategories:
+    - Premium
+    - Commission
+    - Tax
+    - Surcharge
+    - Adjustment
+  chargeFrequency: One-Time
+focusColumns:
+  ServiceName: Coalition
+  ServiceCategory: Insurance / Developer API
+  ProviderName: Coalition
+  PublisherName: Coalition
+  InvoiceIssuerName: Coalition
+  PricingCategory: Premium-Based
+  PricingUnit: policy
+  BillingCurrency: USD
+  ChargeCategory: Premium
+meters:
+  - name: api_requests
+    description: Count of API requests against Coalition surfaces
+    unit: request
+    aggregation: sum
+    dimensions:
+      - api
+      - endpoint
+      - partner
+      - environment
+  - name: quotes_generated
+    description: Number of bindable quotes generated
+    unit: quote
+    aggregation: sum
+    dimensions:
+      - line_of_business
+      - market
+      - broker
+      - program
+  - name: policies_bound
+    description: Number of policies bound via the API
+    unit: policy
+    aggregation: sum
+    dimensions:
+      - line_of_business
+      - market
+      - broker
+      - program
+  - name: documents_generated
+    description: Number of PDF artifacts produced (quote, CRA, signature bundle, policy)
+    unit: document
+    aggregation: sum
+    dimensions:
+      - document_type
+      - line_of_business
+apis:
+  - name: Coalition Exploit Scoring System API
+    baseURL: https://ess-api.coalitioninc.com
+    tags:
+      - Cybersecurity
+      - Vulnerability
+      - Threat Intelligence
+    serviceName: Coalition ESS
+    serviceCategory: Threat Intelligence API
+  - name: Coalition Active Insurance API
+    baseURL: https://api.coalitioninc.com
+    tags:
+      - Insurance
+      - Cyber Insurance
+      - Brokers
+    serviceName: Coalition Active Insurance
+    serviceCategory: Insurance Distribution API
+unitEconomics:
+  - name: Cost per Bound Policy
+    metric: total_partner_integration_cost / policies_bound
+    target: TBD
+  - name: Quote-to-Bind Ratio
+    metric: policies_bound / quotes_generated
+    target: TBD
+  - name: Documents per Policy
+    metric: documents_generated / policies_bound
+    target: TBD
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

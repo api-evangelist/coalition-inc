@@ -1,0 +1,165 @@
+vocabulary:
+  name: Coalition Vocabulary
+  description: >-
+    Domain vocabulary for Coalition's cyber insurance and active risk
+    management surface, covering insurance product lines, the Active
+    Insurance broker API, the Exploit Scoring System (ESS), and adjacent
+    threat-intelligence concepts.
+  version: '2026-05-25'
+  terms:
+    - term: Active Insurance
+      definition: >-
+        Coalition's category for insurance products coupled with continuous
+        attack-surface monitoring, alerting, and incident-response services
+        — the insurer acts before, during, and after an incident, not only
+        at claim time.
+      tags:
+        - Core Concept
+        - Insurance
+
+    - term: Coalition Control
+      definition: >-
+        Coalition's policyholder risk-management platform that surfaces
+        exposed assets, vulnerabilities, and security findings discovered
+        through external scanning, and tracks remediation over time.
+      tags:
+        - Platform
+
+    - term: Wirespeed ADR
+      definition: >-
+        Coalition's Automated Detection and Response capability that
+        ingests endpoint and identity signals and orchestrates response
+        actions across security tooling.
+      tags:
+        - Security
+        - ADR
+
+    - term: Coalition Incident Response (CIR)
+      definition: >-
+        Coalition's first-party digital forensics and incident response
+        team that engages on covered claims and ransomware events.
+      tags:
+        - Incident Response
+
+    - term: Exploit Scoring System (ESS)
+      definition: >-
+        Coalition's machine-learning vulnerability scoring system,
+        producing a 0..1 probability that a given CVE will be exploited
+        in the wild within the next 30 days. Published openly at
+        ess.coalitioninc.com with a public REST API at
+        ess-api.coalitioninc.com.
+      tags:
+        - Vulnerability
+        - Scoring
+        - Core Concept
+
+    - term: ESS Shift
+      definition: >-
+        A material change in a CVE's ESS score over time, signaling
+        rising or falling exploitation likelihood. Surfaced via the
+        has_shifting_ess query parameter and the /cve/{cve_id}/history
+        endpoint.
+      tags:
+        - Vulnerability
+        - Scoring
+
+    - term: EPSS
+      definition: >-
+        Exploit Prediction Scoring System maintained by FIRST.org.
+        Coalition surfaces EPSS scores alongside ESS for cross-reference.
+      tags:
+        - Vulnerability
+        - Scoring
+
+    - term: CVSS
+      definition: >-
+        Common Vulnerability Scoring System maintained by FIRST.org.
+        Coalition returns the CVSS base score, severity, and vector for
+        each CVE.
+      tags:
+        - Vulnerability
+        - Scoring
+
+    - term: CISA KEV
+      definition: >-
+        CISA's Known Exploited Vulnerabilities catalog — CVEs known to
+        be exploited in the wild. Coalition flags CVEs that appear on
+        this catalog.
+      tags:
+        - Vulnerability
+        - Catalog
+
+    - term: VulnCheck KEV
+      definition: >-
+        VulnCheck's commercial Known Exploited Vulnerabilities catalog.
+        Coalition also flags CVEs that appear on this list.
+      tags:
+        - Vulnerability
+        - Catalog
+
+    - term: Coalition Honeypots
+      definition: >-
+        Coalition's distributed sensor network that observes real-world
+        exploitation attempts. CVEs seen by these sensors are flagged
+        via the seen_on_coalition_honeypots property.
+      tags:
+        - Threat Intelligence
+
+    - term: Broker IQ
+      definition: >-
+        Coalition's broker-facing portal for quoting, binding, and
+        managing Coalition policies through a web UI, complementing
+        the partner-gated Active Insurance API.
+      tags:
+        - Brokers
+        - Platform
+
+    - term: Quote / Bind / Issue
+      definition: >-
+        The end-to-end insurance distribution flow exposed through the
+        Active Insurance API: produce a bindable quote, execute the
+        bind on a customer's behalf, and generate the signed policy
+        and associated documents.
+      tags:
+        - Insurance
+        - Workflow
+
+    - term: Coalition Risk Assessment
+      definition: >-
+        A PDF artifact attached to every Coalition quote summarizing
+        the applicant's external attack surface and recommended
+        pre-bind remediations.
+      tags:
+        - Underwriting
+        - Documents
+
+    - term: Executive Risks
+      definition: >-
+        Coalition's commercial management-liability lines — Directors &
+        Officers, Employment Practices Liability, Fiduciary Liability,
+        and Crime — exposed through dedicated API endpoints.
+      tags:
+        - Insurance Lines
+
+    - term: Technology E&O
+      definition: >-
+        Technology Errors and Omissions / Professional Liability for
+        technology service providers; a Coalition commercial line.
+      tags:
+        - Insurance Lines
+
+    - term: MPL
+      definition: >-
+        Miscellaneous Professional Liability — Coalition's catch-all
+        professional liability product for non-technology service
+        providers.
+      tags:
+        - Insurance Lines
+
+    - term: AI Coverage
+      definition: >-
+        Coalition's standalone AI liability product covering losses
+        arising from the deployment, output, or failure of AI systems.
+      tags:
+        - Insurance Lines
+        - AI

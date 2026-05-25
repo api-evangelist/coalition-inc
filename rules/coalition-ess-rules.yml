@@ -1,0 +1,76 @@
+extends: spectral:oas
+rules:
+  coalition-ess-operation-summary-title-case:
+    description: All operation summaries must use Title Case.
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][A-Za-z0-9]*(\\s[A-Z][A-Za-z0-9]*)*)"
+
+  coalition-ess-operation-ids-snake-case:
+    description: ESS API operationIds use snake_case (e.g. cve_cve_get).
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+
+  coalition-ess-cve-id-path-param:
+    description: Single-CVE operations must accept a cve_id path parameter.
+    severity: warn
+    given: "$.paths[/cve/{cve_id}*][get].parameters[*]"
+    then:
+      field: name
+      function: enumeration
+      functionOptions:
+        values:
+          - cve_id
+          - search
+          - page
+          - page_size
+          - order_by
+          - order
+
+  coalition-ess-score-range:
+    description: ESS / EPSS / CVSS score query parameters must be bounded 0..1 numbers.
+    severity: info
+    given: "$.paths[*][*].parameters[?(@.name=='min_ess_score' || @.name=='max_ess_score' || @.name=='min_epss_score' || @.name=='max_epss_score')]"
+    then:
+      field: schema
+      function: truthy
+
+  coalition-ess-pagination-required:
+    description: List endpoints must expose pagination via page and page_size query parameters.
+    severity: warn
+    given: "$.paths[/cve,/cve/{cve_id}/exploits/exploitdb,/cve/{cve_id}/exploits/metasploit,/cve/{cve_id}/mentions/twitter,/cve/{cve_id}/repositories/github,/cve/{cve_id}/history][get]"
+    then:
+      field: parameters
+      function: truthy
+
+  coalition-ess-public-read-only:
+    description: ESS API is public read-only; no securitySchemes required, no write methods allowed.
+    severity: warn
+    given: "$.paths[*]"
+    then:
+      function: falsy
+      field: post
+
+  coalition-ess-server-https:
+    description: Server URL must use HTTPS.
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  coalition-ess-tags-required:
+    description: Each operation should have at least one tag for grouping.
+    severity: info
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy

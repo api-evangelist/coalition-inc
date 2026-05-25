@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://ess-api.coalitioninc.com/cve/CVE-2024-3400/repositories/github",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "cve_id": "CVE-2024-3400",
+      "items": [
+        {
+          "repository": "h4x0r-dk/CVE-2024-3400",
+          "url": "https://github.com/h4x0r-dk/CVE-2024-3400",
+          "stars": 412,
+          "first_seen": "2024-04-13T11:21:00Z",
+          "keywords": ["panos", "globalprotect", "exploit", "rce"]
+        }
+      ],
+      "page": 1,
+      "page_size": 20,
+      "total": 1
+    }
+  }
+}

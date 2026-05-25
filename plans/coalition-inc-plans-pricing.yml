@@ -1,0 +1,110 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Coalition
+providerId: coalition-inc
+created: '2026-05-25'
+modified: '2026-05-25'
+tags:
+  - Cyber Insurance
+  - Insurance
+  - Insurtech
+  - Risk Management
+  - Cybersecurity
+description: >-
+  Plans scaffold for Coalition's API surface. The Coalition Exploit Scoring
+  System (ESS) API is publicly accessible and free with no published
+  authentication, quota, or pricing surface as of 2026-05-25. The Coalition
+  Active Insurance API is partner-gated: access is granted via a partnership
+  agreement with no publicly published price card. Tiers below capture the
+  practical access model rather than dollar pricing.
+plans:
+  - id: coalition-ess-public
+    name: Exploit Scoring System — Public
+    type: free
+    description: >-
+      Open, anonymous access to the Coalition Exploit Scoring System REST API
+      and web explorer. No API key required. Fair-use policy applies; no
+      published rate limit.
+    entries:
+      - label: API Requests
+        description: Fair-use anonymous access
+        name: api_requests
+        type: quota
+        metric: requests
+        limit: -1
+        timeFrame: month
+        geo: global
+        domains:
+          - https://ess-api.coalitioninc.com
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: CVE Search and Detail
+      - name: ESS / EPSS / CVSS Scores
+      - name: ExploitDB and Metasploit References
+      - name: GitHub Repository Signals
+      - name: Twitter Mention Timeline
+      - name: ESS Shift History
+      - name: Public Documentation and ReDoc
+  - id: coalition-active-insurance-partner
+    name: Active Insurance API — Partner
+    type: partnership
+    description: >-
+      Partner-gated access to Coalition's Active Insurance API for brokers,
+      digital distribution platforms, and MGAs. Onboarding includes a
+      dedicated implementation manager, sandbox account, product and API
+      documentation, and QA test plans. Pricing is governed by commission
+      and partnership terms, not per-call API pricing.
+    entries:
+      - label: API Requests
+        description: Negotiated, subject to fair-use
+        name: api_requests
+        type: quota
+        metric: requests
+        limit: -1
+        timeFrame: month
+        geo: US-CA
+        domains:
+          - https://api.coalitioninc.com
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: Rate / Quote / Bind / Renew
+      - name: Document Generation (Quote, Risk Assessment, Signature Bundle)
+      - name: Webhook Subscriptions
+      - name: 99.9% Uptime SLA
+      - name: Sandbox Environment
+      - name: Dedicated Implementation Manager
+      - name: Coalition Active Insurance API
+  - id: coalition-broker-iq
+    name: Broker IQ Portal
+    type: free
+    description: >-
+      Hosted, co-branded portal for brokers who prefer not to integrate the
+      API directly. Coalition operates the quoting and binding experience;
+      no API integration required.
+    entries:
+      - label: Seats
+        description: Broker seats negotiated under partnership agreement
+        name: seats
+        type: quota
+        metric: seats
+        limit: -1
+        timeFrame: month
+        geo: US-CA
+        domains:
+          - https://www.coalitioninc.com/brokers/broker-iq
+        unit: 1
+        price: '0.00'
+        userMultiplied: true
+    elements:
+      - name: Broker IQ Portal
+      - name: Quote Generation
+      - name: Document Management
+      - name: Co-Branded Experience
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

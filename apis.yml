@@ -1,28 +1,20 @@
 aid: coalition-inc
 name: Coalition
 description: >-
-  Coalition is a San Francisco–headquartered cyber insurance and active risk
-  management provider founded in 2017 by Joshua Motta (CEO) and John Hering.
-  Coalition pairs commercial insurance lines — Cyber, Technology Errors &
-  Omissions, Executive Risks (D&O, EPL, Fiduciary, Crime), Miscellaneous
-  Professional Liability, and AI coverage — with a continuous attack-surface
-  monitoring and incident-response platform (Coalition Control, Wirespeed
-  ADR, Coalition Incident Response, Security Awareness Training). The
-  company's underwriting engine is exposed to brokers and distribution
-  partners through the Coalition Active Insurance API, a RESTful surface
-  that supports rate, quote, bind, document generation, renewals, and
-  webhook events across the United States and Canada, with executive risks
-  APIs and additional product lines added over time. Coalition also
-  publishes a public Exploit Scoring System (ESS) API at
-  ess-api.coalitioninc.com that exposes CVE detail, ESS/EPSS/CVSS scoring,
-  exploit references (ExploitDB, Metasploit), GitHub repository signals,
-  and Twitter mention timelines for over 200,000 vulnerabilities.
-  Coalition is backed by Allianz X, Valor Equity Partners, Ribbit Capital,
-  Mitsui Sumitomo, Kinetic Partners and other strategic insurers
-  (Allianz, Arch, Ascot, Zurich, Swiss Re, Lloyd's syndicates); it raised
-  a $250M Series F in 2022 at a $5B valuation. The Active Insurance API
-  is partner-gated (no public OpenAPI), but the ESS API is fully public
-  with OpenAPI 3.1, an interactive docs UI, and ReDoc.
+  Coalition is a San Francisco–headquartered cyber insurance and active risk management provider founded in 2017 by
+  Joshua Motta (CEO) and John Hering. Coalition pairs commercial insurance lines — Cyber, Technology Errors & Omissions,
+  Executive Risks (D&O, EPL, Fiduciary, Crime), Miscellaneous Professional Liability, and AI coverage — with a
+  continuous attack-surface monitoring and incident-response platform (Coalition Control, Wirespeed ADR, Coalition
+  Incident Response, Security Awareness Training). The company's underwriting engine is exposed to brokers and
+  distribution partners through the Coalition Active Insurance API, a RESTful surface that supports rate, quote, bind,
+  document generation, renewals, and webhook events across the United States and Canada, with executive risks APIs and
+  additional product lines added over time. Coalition also publishes a public Exploit Scoring System (ESS) API at
+  ess-api.coalitioninc.com that exposes CVE detail, ESS/EPSS/CVSS scoring, exploit references (ExploitDB, Metasploit),
+  GitHub repository signals, and Twitter mention timelines for over 200,000 vulnerabilities. Coalition is backed by
+  Allianz X, Valor Equity Partners, Ribbit Capital, Mitsui Sumitomo, Kinetic Partners and other strategic insurers
+  (Allianz, Arch, Ascot, Zurich, Swiss Re, Lloyd's syndicates); it raised a $250M Series F in 2022 at a $5B valuation.
+  The Active Insurance API is partner-gated (no public OpenAPI), but the ESS API is fully public with OpenAPI 3.1, an
+  interactive docs UI, and ReDoc.
 type: Index
 position: Provider
 access: 3rd-Party
@@ -52,11 +44,9 @@ apis:
   - aid: coalition-inc:exploit-scoring-system
     name: Coalition Exploit Scoring System (ESS) API
     description: >-
-      Public REST API exposing Coalition's machine-learning Exploit Scoring
-      System over more than 200,000 CVEs. Returns vulnerability detail,
-      ESS / EPSS / CVSS score summaries, ESS shift history, public exploit
-      references (ExploitDB, Metasploit), GitHub repository mentions and
-      keyword extraction, and Twitter mention timelines. Useful for
+      Public REST API exposing Coalition's machine-learning Exploit Scoring System over more than 200,000 CVEs. Returns
+      vulnerability detail, ESS / EPSS / CVSS score summaries, ESS shift history, public exploit references (ExploitDB,
+      Metasploit), GitHub repository mentions and keyword extraction, and Twitter mention timelines. Useful for
       vulnerability triage, prioritization, and threat-intel enrichment.
     humanURL: https://ess.coalitioninc.com
     baseURL: https://ess-api.coalitioninc.com
@@ -79,8 +69,6 @@ apis:
         url: https://ess.coalitioninc.com/explore/
       - type: SpectralRules
         url: rules/coalition-ess-rules.yml
-      - type: NaftikoCapability
-        url: capabilities/exploit-scoring.yaml
       - type: JSONSchema
         url: json-schema/coalition-ess-cve-schema.json
       - type: JSONStructure
@@ -96,17 +84,12 @@ apis:
   - aid: coalition-inc:active-insurance-api
     name: Coalition Active Insurance API
     description: >-
-      Partner-gated REST API that brokers and distribution partners use to
-      rate, quote, bind, generate documents (quote PDF, Coalition Risk
-      Assessment, signature bundle, specimen policy), and manage renewals
-      for Coalition's commercial insurance lines — Cyber, Technology E&O,
-      Executive Risks (D&O, EPL, Fiduciary, Crime), Miscellaneous
-      Professional Liability, and AI coverage. Supports webhook events
-      and ships with a sandbox environment, dedicated implementation
-      manager, and QA test plans. Coverage spans the United States and
-      Canada, with a 99.9% uptime SLA and sub-2-second quote response
-      target. Documentation is provisioned to vetted partners; no public
-      OpenAPI is published.
+      Partner-gated REST API that brokers and distribution partners use to rate, quote, bind, generate documents (quote
+      PDF, Coalition Risk Assessment, signature bundle, specimen policy), and manage renewals for Coalition's commercial
+      insurance lines — Cyber, Technology E&O, Executive Risks (D&O, EPL, Fiduciary, Crime), Miscellaneous Professional
+      Liability, and AI coverage. Supports webhook events and ships with a sandbox environment, dedicated implementation
+      manager, and QA test plans. Coverage spans the United States and Canada, with a 99.9% uptime SLA and sub-2-second
+      quote response target. Documentation is provisioned to vetted partners; no public OpenAPI is published.
     humanURL: https://www.coalitioninc.com/brokers/api
     tags:
       - Cyber Insurance
@@ -125,7 +108,8 @@ apis:
       - type: Blog
         url: https://www.coalitioninc.com/blog/coalition-apis-helping-power-the-future-of-insurance-distribution
       - type: Announcement
-        url: https://www.coalitioninc.com/announcements/coalition-launches-new-API-solution-for-streamlined-partner-integration
+        url: >-
+          https://www.coalitioninc.com/announcements/coalition-launches-new-API-solution-for-streamlined-partner-integration
       - type: Announcement
         url: https://www.coalitioninc.com/announcements/coalition-introduces-new-apis-to-power-executive-risks-insurance
 common:

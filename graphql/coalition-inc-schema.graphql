@@ -1,0 +1,1146 @@
+"""
+Coalition GraphQL Schema
+Conceptual schema for the Coalition Active Insurance API and Exploit Scoring System (ESS) API.
+Covers the full cyber insurance lifecycle: application, assessment, quote, bind, policy management,
+documents, endorsements, renewals, claims, and CVE/exploit intelligence.
+Source: https://docs.coalitioninc.com/ and https://ess-api.coalitioninc.com/
+"""
+
+# ─── Scalars ───────────────────────────────────────────────────────────────────
+
+scalar Date
+scalar DateTime
+scalar JSON
+scalar Money
+scalar URL
+
+# ─── Enums ─────────────────────────────────────────────────────────────────────
+
+enum PolicyType {
+  CYBER
+  TECH_EO
+  EXEC_RISKS
+  MPL
+  AI_COVERAGE
+  CRIME
+  DO
+  EPL
+  FIDUCIARY
+}
+
+enum PolicyStatus {
+  PENDING
+  QUOTED
+  BOUND
+  ACTIVE
+  CANCELLED
+  EXPIRED
+  RENEWED
+  NON_RENEWED
+}
+
+enum QuoteStatus {
+  PENDING
+  ISSUED
+  ACCEPTED
+  DECLINED
+  EXPIRED
+  BOUND
+}
+
+enum ClaimType {
+  BREACH
+  RANSOMWARE
+  FRAUD
+  BEC
+  PRIVACY
+  NETWORK_OUTAGE
+  MEDIA
+  OTHER
+}
+
+enum ClaimStatus {
+  REPORTED
+  UNDER_REVIEW
+  INVESTIGATION
+  SETTLED
+  CLOSED
+  DENIED
+}
+
+enum BusinessType {
+  LLC
+  CORP
+  PARTNERSHIP
+  SOLE_PROP
+  NON_PROFIT
+  TRUST
+}
+
+enum CloudProvider {
+  AWS
+  AZURE
+  GCP
+  IBM_CLOUD
+  ORACLE_CLOUD
+  ON_PREMISES
+  HYBRID
+  OTHER
+}
+
+enum WebhookEvent {
+  QUOTE_ISSUED
+  QUOTE_EXPIRED
+  POLICY_BOUND
+  POLICY_RENEWED
+  POLICY_CANCELLED
+  CLAIM_FILED
+  CLAIM_UPDATED
+  CLAIM_CLOSED
+  RENEWAL_INITIATED
+  ASSESSMENT_COMPLETE
+  DOCUMENT_READY
+}
+
+enum ScanSeverity {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+  INFORMATIONAL
+}
+
+enum ESSSeverity {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+}
+
+# ─── Pagination ─────────────────────────────────────────────────────────────────
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type PolicyConnection {
+  edges: [PolicyEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PolicyEdge {
+  node: Policy!
+  cursor: String!
+}
+
+type QuoteConnection {
+  edges: [QuoteEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type QuoteEdge {
+  node: Quote!
+  cursor: String!
+}
+
+type ApplicationConnection {
+  edges: [ApplicationEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ApplicationEdge {
+  node: Application!
+  cursor: String!
+}
+
+type ClaimConnection {
+  edges: [ClaimEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ClaimEdge {
+  node: Claim!
+  cursor: String!
+}
+
+type CVEConnection {
+  edges: [CVEEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type CVEEdge {
+  node: CVE!
+  cursor: String!
+}
+
+# ─── Address & Contact ─────────────────────────────────────────────────────────
+
+"""Physical or mailing address."""
+type Address {
+  line1: String!
+  line2: String
+  city: String!
+  state: String!
+  postalCode: String!
+  country: String!
+}
+
+"""Named contact with role and communication details."""
+type Contact {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  role: String
+  email: String!
+  phone: String
+  isPrimary: Boolean!
+}
+
+# ─── Business & Insured ────────────────────────────────────────────────────────
+
+"""NAICS industry classification."""
+type Naics {
+  code: String!
+  title: String!
+  sector: String!
+  subsector: String
+}
+
+"""Employee headcount band used for underwriting."""
+type EmployeeCount {
+  band: String!
+  min: Int
+  max: Int
+  exact: Int
+}
+
+"""Annual revenue figure."""
+type Revenue {
+  amount: Float!
+  currency: String!
+  year: Int
+}
+
+"""Legal business entity."""
+type Business {
+  id: ID!
+  legalName: String!
+  dba: String
+  incorporationState: String
+  type: BusinessType!
+  naics: Naics
+  website: URL
+  yearFounded: Int
+}
+
+"""Full insured entity profile."""
+type InsuredDetails {
+  id: ID!
+  business: Business!
+  mailingAddress: Address!
+  primaryContact: Contact!
+  additionalContacts: [Contact!]!
+  employeeCount: EmployeeCount!
+  revenue: Revenue!
+  domainDetails: [DomainDetails!]!
+  techStack: TechStack!
+}
+
+# ─── Tech Stack & Exposure ─────────────────────────────────────────────────────
+
+"""Technology inventory declared by the insured."""
+type TechStack {
+  id: ID!
+  cloudProviders: [CloudProvider!]!
+  operatingSystems: [String!]!
+  emailProvider: String
+  mfaEnabled: Boolean
+  edrEnabled: Boolean
+  backupEnabled: Boolean
+  privilegedAccessManagement: Boolean
+  endpointEncryption: Boolean
+  securityAwarenessTraining: Boolean
+  incidentResponsePlan: Boolean
+  vulnerabilityManagementProgram: Boolean
+  otherTools: [String!]
+}
+
+"""Internet-facing domain used in attack-surface monitoring."""
+type DomainDetails {
+  id: ID!
+  domain: String!
+  registrar: String
+  registeredAt: Date
+  expiresAt: Date
+  ipAddresses: [String!]!
+  openPorts: [Int!]
+  tlsGrade: String
+  lastScannedAt: DateTime
+  exposures: [ExposureDetails!]!
+}
+
+"""An exposed service or vulnerability found on a scanned domain."""
+type ExposureDetails {
+  id: ID!
+  domain: DomainDetails!
+  service: String!
+  port: Int
+  protocol: String
+  severity: ScanSeverity!
+  description: String!
+  cve: CVE
+  detectedAt: DateTime!
+  remediatedAt: DateTime
+}
+
+"""External vulnerability scan result."""
+type VulnerabilityScan {
+  id: ID!
+  insuredId: ID!
+  performedAt: DateTime!
+  domainsScanned: Int!
+  exposuresFound: Int!
+  criticalCount: Int!
+  highCount: Int!
+  mediumCount: Int!
+  lowCount: Int!
+  exposures: [ExposureDetails!]!
+}
+
+# ─── Assessment ────────────────────────────────────────────────────────────────
+
+"""Numeric risk score with band classification."""
+type RiskScore {
+  value: Float!
+  band: String!
+  percentile: Float
+  factors: [String!]!
+}
+
+"""Security posture rating."""
+type SecurityRating {
+  grade: String!
+  numeric: Float
+  category: String!
+  rationale: String
+}
+
+"""Full risk assessment details."""
+type AssessmentDetails {
+  vulnerabilityScan: VulnerabilityScan!
+  riskScore: RiskScore!
+  securityRating: SecurityRating!
+  recommendations: [String!]!
+  riskDrivers: [String!]!
+  controlGaps: [String!]
+  completedAt: DateTime!
+}
+
+"""Risk assessment generated from application data and external signals."""
+type Assessment {
+  id: ID!
+  applicationId: ID!
+  insuredId: ID!
+  details: AssessmentDetails!
+  status: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Application ───────────────────────────────────────────────────────────────
+
+"""A single application question with answer options."""
+type SecurityQuestion {
+  id: ID!
+  text: String!
+  category: String!
+  required: Boolean!
+  helpText: String
+  answerType: String!
+  options: [String!]
+}
+
+"""An applicant's answer to a security question."""
+type SecurityAnswer {
+  id: ID!
+  question: SecurityQuestion!
+  answer: String!
+  evidenceNotes: String
+  answeredAt: DateTime
+}
+
+"""Full application data with all fields and attachments."""
+type ApplicationDetails {
+  insured: InsuredDetails!
+  policyType: PolicyType!
+  effectiveDate: Date!
+  expiryDate: Date!
+  requestedLimit: Float!
+  requestedRetention: Float!
+  securityAnswers: [SecurityAnswer!]!
+  additionalInsureds: [InsuredDetails!]
+  priorLosses: [String!]
+  submittedAt: DateTime
+}
+
+"""Insurance application record."""
+type Application {
+  id: ID!
+  status: String!
+  details: ApplicationDetails!
+  assessment: Assessment
+  quotes: [Quote!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Coverage ──────────────────────────────────────────────────────────────────
+
+"""Coverage limit with occurrence and aggregate amounts."""
+type CoverageLimit {
+  occurrence: Float!
+  aggregate: Float!
+  currency: String!
+}
+
+"""Sub-limit within a coverage line."""
+type Sublimit {
+  id: ID!
+  name: String!
+  limit: Float!
+  currency: String!
+  description: String
+}
+
+"""Deductible applicable to a coverage."""
+type Deductible {
+  id: ID!
+  amount: Float!
+  currency: String!
+  type: String!
+  appliesTo: String
+}
+
+"""Self-insured retention."""
+type Retention {
+  id: ID!
+  amount: Float!
+  currency: String!
+  appliesTo: String
+}
+
+"""Technology E&O specific limit fields."""
+type TechLimit {
+  id: ID!
+  techProductsLimit: Float!
+  techServicesLimit: Float!
+  currency: String!
+}
+
+"""Full coverage terms and conditions."""
+type CoverageDetails {
+  description: String!
+  inclusions: [String!]!
+  exclusions: [String!]!
+  conditions: [String!]
+  endorsements: [String!]
+}
+
+"""A coverage component within a policy or quote."""
+type Coverage {
+  id: ID!
+  name: String!
+  policyType: PolicyType!
+  limit: CoverageLimit!
+  sublimits: [Sublimit!]!
+  deductible: Deductible
+  retention: Retention
+  techLimit: TechLimit
+  details: CoverageDetails!
+  premium: Float
+  currency: String!
+}
+
+# ─── Quote ─────────────────────────────────────────────────────────────────────
+
+"""Premium breakdown per coverage including taxes and fees."""
+type PremiumDetails {
+  id: ID!
+  basePremium: Float!
+  taxes: Float!
+  fees: Float!
+  totalPremium: Float!
+  currency: String!
+  perCoverageBreakdown: [CoveragePremium!]!
+}
+
+"""Per-coverage premium amount."""
+type CoveragePremium {
+  coverageId: ID!
+  coverageName: String!
+  premium: Float!
+  currency: String!
+}
+
+"""Expiry date and status for a quote."""
+type QuoteExpiry {
+  expiresAt: DateTime!
+  daysRemaining: Int!
+  isExpired: Boolean!
+}
+
+"""Detailed quote breakdown."""
+type QuoteDetails {
+  coverages: [Coverage!]!
+  premiumDetails: PremiumDetails!
+  quoteExpiry: QuoteExpiry!
+  specialConditions: [String!]
+  underwriterNotes: String
+  documents: [PolicyDocument!]!
+}
+
+"""Quote record with pricing, coverage, and lifecycle status."""
+type Quote {
+  id: ID!
+  applicationId: ID!
+  policyType: PolicyType!
+  status: QuoteStatus!
+  insured: InsuredDetails!
+  details: QuoteDetails!
+  premium: Premium!
+  issuedAt: DateTime
+  acceptedAt: DateTime
+  boundAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Bind ──────────────────────────────────────────────────────────────────────
+
+"""Record of a completed bind transaction."""
+type BindDetails {
+  quoteId: ID!
+  policyId: ID!
+  boundAt: DateTime!
+  effectiveDate: Date!
+  expiryDate: Date!
+  signedBy: String
+  signedAt: DateTime
+  documents: [PolicyDocument!]!
+  insurer: Insurer!
+}
+
+"""Input for initiating a policy bind."""
+input BindRequest {
+  quoteId: ID!
+  effectiveDate: Date!
+  paymentMethod: String!
+  billingContact: ContactInput!
+  signatureConsent: Boolean!
+}
+
+# ─── Policy ────────────────────────────────────────────────────────────────────
+
+"""Extended policy details."""
+type PolicyDetails {
+  application: Application!
+  coverages: [Coverage!]!
+  premiumDetails: PremiumDetails!
+  endorsements: [Endorsement!]!
+  documents: [PolicyDocument!]!
+  bindDetails: BindDetails!
+  specialConditions: [String!]
+  underwriterNotes: String
+}
+
+"""Cyber-specific policy fields."""
+type CyberPolicy {
+  id: ID!
+  policy: Policy!
+  networkSecurityLimit: Float!
+  privacyLiabilityLimit: Float!
+  breachResponseLimit: Float!
+  cyberExtortionLimit: Float!
+  mediaLiabilityLimit: Float!
+  businessInterruptionLimit: Float!
+  socialEngineeringLimit: Float!
+  currency: String!
+}
+
+"""Technology E&O specific policy fields."""
+type TechPolicy {
+  id: ID!
+  policy: Policy!
+  techProductsLimit: Float!
+  techServicesLimit: Float!
+  miscProfessionalLiabilityLimit: Float
+  currency: String!
+}
+
+"""Core policy record."""
+type Policy {
+  id: ID!
+  policyNumber: String!
+  policyType: PolicyType!
+  status: PolicyStatus!
+  insured: InsuredDetails!
+  insurer: Insurer!
+  details: PolicyDetails!
+  cyberPolicy: CyberPolicy
+  techPolicy: TechPolicy
+  premium: Premium!
+  effectiveDate: Date!
+  expiryDate: Date!
+  renewalDate: Date
+  claims: [Claim!]!
+  renewal: Renewal
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Premium ───────────────────────────────────────────────────────────────────
+
+"""Payment schedule entry."""
+type PaymentScheduleEntry {
+  dueDate: Date!
+  amount: Float!
+  currency: String!
+  status: String!
+}
+
+"""Total premium with payment schedule."""
+type Premium {
+  id: ID!
+  totalAmount: Float!
+  currency: String!
+  paymentFrequency: String!
+  schedule: [PaymentScheduleEntry!]!
+  details: PremiumDetails!
+}
+
+# ─── Documents ─────────────────────────────────────────────────────────────────
+
+"""A policy document artifact."""
+type PolicyDocument {
+  id: ID!
+  policyId: ID
+  quoteId: ID
+  documentType: String!
+  name: String!
+  url: URL!
+  mimeType: String!
+  sizeBytes: Int
+  generatedAt: DateTime!
+  expiresAt: DateTime
+}
+
+"""Certificate of insurance."""
+type Certificate {
+  id: ID!
+  policyId: ID!
+  certificateNumber: String!
+  holderName: String!
+  holderAddress: Address!
+  effectiveDate: Date!
+  expiryDate: Date!
+  document: PolicyDocument!
+  issuedAt: DateTime!
+}
+
+"""Policy endorsement modifying coverage terms."""
+type Endorsement {
+  id: ID!
+  policyId: ID!
+  endorsementNumber: String!
+  type: String!
+  description: String!
+  effectiveDate: Date!
+  premiumAdjustment: Float
+  currency: String
+  document: PolicyDocument!
+  issuedAt: DateTime!
+}
+
+# ─── Renewal ───────────────────────────────────────────────────────────────────
+
+"""Renewal linking expiring policy to new renewal quote and policy."""
+type Renewal {
+  id: ID!
+  expiringPolicyId: ID!
+  expiringPolicy: Policy!
+  renewalQuote: Quote
+  renewedPolicy: Policy
+  initiatedAt: DateTime!
+  status: String!
+  premiumChange: Float
+  coverageChanges: [String!]
+  completedAt: DateTime
+}
+
+# ─── Insurer ───────────────────────────────────────────────────────────────────
+
+"""Insurance capacity provider."""
+type Insurer {
+  id: ID!
+  name: String!
+  amBestRating: String
+  naic: String
+  state: String
+  country: String!
+  supportedPolicyTypes: [PolicyType!]!
+}
+
+# ─── Claims ────────────────────────────────────────────────────────────────────
+
+"""Full incident description for a claim."""
+type IncidentDetails {
+  description: String!
+  discoveredAt: DateTime!
+  occurredAt: DateTime
+  affectedSystems: [String!]!
+  affectedRecords: Int
+  attackerTTP: [String!]
+  malwareFamily: String
+  ransomwareDemand: Float
+  regulatoryNotificationRequired: Boolean!
+}
+
+"""Underlying incident record for a claim."""
+type Incident {
+  id: ID!
+  type: ClaimType!
+  details: IncidentDetails!
+  reportedAt: DateTime!
+}
+
+"""Full claim record with reserves, payments, and status."""
+type ClaimDetails {
+  incident: Incident!
+  coveragesInvoked: [Coverage!]!
+  totalReserve: Float!
+  totalPaid: Float!
+  currency: String!
+  adjusterName: String
+  adjusterEmail: String
+  legalCounsel: String
+  forensicsVendor: String
+  timeline: [ClaimTimelineEntry!]!
+}
+
+"""A timeline entry for claim status progression."""
+type ClaimTimelineEntry {
+  timestamp: DateTime!
+  status: ClaimStatus!
+  note: String
+  actor: String
+}
+
+"""A filed claim against a policy."""
+type Claim {
+  id: ID!
+  claimNumber: String!
+  policyId: ID!
+  policy: Policy!
+  type: ClaimType!
+  status: ClaimStatus!
+  details: ClaimDetails!
+  filedAt: DateTime!
+  closedAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Auth & Integration ────────────────────────────────────────────────────────
+
+"""API key credential for partner integrations."""
+type APIKey {
+  id: ID!
+  name: String!
+  keyPrefix: String!
+  scopes: [String!]!
+  createdAt: DateTime!
+  expiresAt: DateTime
+  lastUsedAt: DateTime
+  isActive: Boolean!
+}
+
+"""Short-lived bearer token for API authentication."""
+type Token {
+  accessToken: String!
+  tokenType: String!
+  expiresIn: Int!
+  scope: String
+  issuedAt: DateTime!
+}
+
+"""Registered webhook endpoint."""
+type Webhook {
+  id: ID!
+  url: URL!
+  description: String
+  events: [WebhookEvent!]!
+  secret: String
+  isActive: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  lastDeliveryAt: DateTime
+  lastDeliveryStatus: String
+}
+
+# ─── CVE / ESS (Exploit Scoring System) ────────────────────────────────────────
+
+"""Coalition Exploit Scoring System score."""
+type ESSScore {
+  score: Float!
+  severity: ESSSeverity!
+  percentile: Float
+  updatedAt: DateTime!
+}
+
+"""Historical ESS score data point."""
+type ESSHistory {
+  cveId: String!
+  date: Date!
+  score: Float!
+  severity: ESSSeverity!
+}
+
+"""EPSS probability score."""
+type EPSSScore {
+  probability: Float!
+  percentile: Float!
+  date: Date!
+}
+
+"""CVSS score for a CVE."""
+type CVSSScore {
+  version: String!
+  baseScore: Float!
+  severity: String!
+  vector: String!
+}
+
+"""Aggregated scores for a CVE."""
+type CVEScores {
+  ess: ESSScore
+  epss: EPSSScore
+  cvssV2: CVSSScore
+  cvssV3: CVSSScore
+}
+
+"""Public exploit reference (ExploitDB, Metasploit)."""
+type ExploitReference {
+  id: ID!
+  source: String!
+  referenceId: String!
+  title: String!
+  url: URL
+  publishedAt: Date
+  reliability: String
+}
+
+"""GitHub repository mentioning or implementing a CVE exploit."""
+type GitHubRepo {
+  id: ID!
+  owner: String!
+  name: String!
+  fullName: String!
+  url: URL!
+  description: String
+  stars: Int!
+  forks: Int!
+  language: String
+  topics: [String!]
+  pushedAt: DateTime
+  keywords: [String!]
+}
+
+"""Tweet referencing a CVE."""
+type TwitterMention {
+  id: ID!
+  tweetId: String!
+  text: String!
+  authorHandle: String!
+  likeCount: Int!
+  retweetCount: Int!
+  publishedAt: DateTime!
+}
+
+"""Full CVE record with scores and exploit intelligence."""
+type CVE {
+  id: ID!
+  cveId: String!
+  description: String!
+  publishedAt: Date!
+  modifiedAt: Date
+  scores: CVEScores!
+  essHistory: [ESSHistory!]!
+  exploitReferences: [ExploitReference!]!
+  githubRepos: [GitHubRepo!]!
+  twitterMentions: [TwitterMention!]!
+  affectedProducts: [String!]
+  references: [URL!]
+}
+
+# ─── Input Types ───────────────────────────────────────────────────────────────
+
+input ContactInput {
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String
+  role: String
+}
+
+input AddressInput {
+  line1: String!
+  line2: String
+  city: String!
+  state: String!
+  postalCode: String!
+  country: String!
+}
+
+input BusinessInput {
+  legalName: String!
+  dba: String
+  type: BusinessType!
+  naicsCode: String
+  website: URL
+  yearFounded: Int
+  incorporationState: String
+}
+
+input ApplicationInput {
+  policyType: PolicyType!
+  business: BusinessInput!
+  mailingAddress: AddressInput!
+  primaryContact: ContactInput!
+  employeeCount: Int!
+  annualRevenue: Float!
+  currency: String!
+  requestedLimit: Float!
+  requestedRetention: Float!
+  effectiveDate: Date!
+  domains: [String!]!
+  cloudProviders: [CloudProvider!]!
+  priorLosses: Boolean!
+}
+
+input EndorsementInput {
+  type: String!
+  description: String!
+  effectiveDate: Date!
+}
+
+input ClaimInput {
+  policyId: ID!
+  claimType: ClaimType!
+  incidentDescription: String!
+  discoveredAt: DateTime!
+  affectedSystems: [String!]!
+  contactName: String!
+  contactEmail: String!
+  contactPhone: String
+}
+
+input ClaimUpdateInput {
+  status: ClaimStatus
+  note: String
+  adjusterName: String
+  adjusterEmail: String
+}
+
+input WebhookInput {
+  url: URL!
+  description: String
+  events: [WebhookEvent!]!
+  secret: String
+}
+
+input APIKeyInput {
+  name: String!
+  scopes: [String!]!
+  expiresAt: DateTime
+}
+
+input PolicyInput {
+  status: PolicyStatus
+  notes: String
+}
+
+input PolicyFilter {
+  policyType: PolicyType
+  status: PolicyStatus
+  insuredId: ID
+  effectiveDateFrom: Date
+  effectiveDateTo: Date
+}
+
+input QuoteFilter {
+  policyType: PolicyType
+  status: QuoteStatus
+  applicationId: ID
+  issuedFrom: Date
+  issuedTo: Date
+}
+
+input ApplicationFilter {
+  policyType: PolicyType
+  status: String
+  submittedFrom: Date
+  submittedTo: Date
+}
+
+input ClaimFilter {
+  claimType: ClaimType
+  status: ClaimStatus
+  policyId: ID
+  filedFrom: Date
+  filedTo: Date
+}
+
+input CVEFilter {
+  essMinScore: Float
+  essMaxScore: Float
+  severity: ESSSeverity
+  publishedFrom: Date
+  publishedTo: Date
+  hasExploits: Boolean
+}
+
+# ─── Root Operations ───────────────────────────────────────────────────────────
+
+type Query {
+  """Retrieve a single policy by ID."""
+  policy(id: ID!): Policy
+
+  """List policies with optional filtering and pagination."""
+  policies(filter: PolicyFilter, first: Int, after: String): PolicyConnection!
+
+  """Retrieve a single quote by ID."""
+  quote(id: ID!): Quote
+
+  """List quotes with optional filtering and pagination."""
+  quotes(filter: QuoteFilter, first: Int, after: String): QuoteConnection!
+
+  """Retrieve a single application by ID."""
+  application(id: ID!): Application
+
+  """List applications with optional filtering and pagination."""
+  applications(filter: ApplicationFilter, first: Int, after: String): ApplicationConnection!
+
+  """Retrieve a single claim by ID."""
+  claim(id: ID!): Claim
+
+  """List claims with optional filtering and pagination."""
+  claims(filter: ClaimFilter, first: Int, after: String): ClaimConnection!
+
+  """Retrieve CVE details with ESS scoring."""
+  cve(cveId: String!): CVE
+
+  """List CVEs with scoring and filtering."""
+  cves(filter: CVEFilter, first: Int, after: String): CVEConnection!
+
+  """Retrieve insurer details."""
+  insurer(id: ID!): Insurer
+
+  """List all supported insurers."""
+  insurers: [Insurer!]!
+
+  """Retrieve a webhook configuration."""
+  webhook(id: ID!): Webhook
+
+  """List all registered webhook configurations."""
+  webhooks: [Webhook!]!
+
+  """Retrieve the current authenticated partner's API keys."""
+  apiKeys: [APIKey!]!
+
+  """Retrieve risk assessment for an application."""
+  assessment(applicationId: ID!): Assessment
+
+  """Retrieve a vulnerability scan for an insured."""
+  vulnerabilityScan(insuredId: ID!): VulnerabilityScan
+
+  """Retrieve a certificate of insurance."""
+  certificate(id: ID!): Certificate
+
+  """List certificates for a policy."""
+  certificates(policyId: ID!): [Certificate!]!
+}
+
+type Mutation {
+  """Start a new insurance application."""
+  createApplication(input: ApplicationInput!): Application!
+
+  """Submit an application for underwriting."""
+  submitApplication(id: ID!): Application!
+
+  """Generate a quote from a submitted application."""
+  createQuote(applicationId: ID!): Quote!
+
+  """Bind a quoted policy."""
+  bindPolicy(input: BindRequest!): BindDetails!
+
+  """Update policy metadata."""
+  updatePolicy(id: ID!, input: PolicyInput!): Policy!
+
+  """Cancel an active policy."""
+  cancelPolicy(id: ID!, reason: String!): Policy!
+
+  """Add an endorsement to a policy."""
+  createEndorsement(policyId: ID!, input: EndorsementInput!): Endorsement!
+
+  """Initiate a renewal for an expiring policy."""
+  initiateRenewal(policyId: ID!): Renewal!
+
+  """File a new claim against a policy."""
+  fileClaim(input: ClaimInput!): Claim!
+
+  """Update an existing claim."""
+  updateClaim(id: ID!, input: ClaimUpdateInput!): Claim!
+
+  """Issue a certificate of insurance for a policy."""
+  issueCertificate(policyId: ID!, holderName: String!, holderAddress: AddressInput!): Certificate!
+
+  """Register a new webhook endpoint."""
+  createWebhook(input: WebhookInput!): Webhook!
+
+  """Delete a webhook registration."""
+  deleteWebhook(id: ID!): Boolean!
+
+  """Generate a new API key."""
+  generateAPIKey(input: APIKeyInput!): APIKey!
+
+  """Revoke an API key."""
+  revokeAPIKey(id: ID!): Boolean!
+
+  """Generate a bearer token from an API key."""
+  generateToken(apiKeyId: ID!): Token!
+}
+
+type Subscription {
+  """Subscribe to policy status changes."""
+  policyStatusChanged(policyId: ID!): Policy!
+
+  """Subscribe to quote events for an application."""
+  quoteIssued(applicationId: ID!): Quote!
+
+  """Subscribe to claim status updates."""
+  claimStatusChanged(claimId: ID!): Claim!
+
+  """Subscribe to renewal lifecycle events."""
+  renewalUpdated(policyId: ID!): Renewal!
+
+  """Subscribe to ESS score changes for a CVE."""
+  essScoreChanged(cveId: String!): CVE!
+}

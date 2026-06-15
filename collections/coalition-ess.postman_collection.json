@@ -1,0 +1,1821 @@
+{
+  "item": [
+    {
+      "id": "8c9a98bd-e56f-4f8e-ac99-62dcf614896d",
+      "name": "List CVEs",
+      "request": {
+        "name": "List CVEs",
+        "description": {
+          "content": "Retrieve CVEs and their details based on granular controls",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "cve"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "search",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "has_shifting_ess",
+              "value": "<boolean>"
+            },
+            {
+              "disabled": false,
+              "key": "date_from",
+              "value": "<date>"
+            },
+            {
+              "disabled": false,
+              "key": "date_to",
+              "value": "<date>"
+            },
+            {
+              "disabled": false,
+              "key": "min_ess_score",
+              "value": "<number>"
+            },
+            {
+              "disabled": false,
+              "key": "max_ess_score",
+              "value": "<number>"
+            },
+            {
+              "disabled": false,
+              "key": "min_epss_score",
+              "value": "<number>"
+            },
+            {
+              "disabled": false,
+              "key": "max_epss_score",
+              "value": "<number>"
+            },
+            {
+              "disabled": false,
+              "key": "seen_on_coalition_honeypots",
+              "value": "<boolean>"
+            },
+            {
+              "disabled": false,
+              "key": "seen_on_cisa_kev",
+              "value": "<boolean>"
+            },
+            {
+              "disabled": false,
+              "key": "seen_on_vulncheck_kev",
+              "value": "<boolean>"
+            },
+            {
+              "disabled": false,
+              "key": "seen_on_exploitdb",
+              "value": "<boolean>"
+            },
+            {
+              "disabled": false,
+              "key": "seen_on_metasploit",
+              "value": "<boolean>"
+            },
+            {
+              "disabled": false,
+              "key": "seen_on_github",
+              "value": "<boolean>"
+            },
+            {
+              "disabled": false,
+              "key": "seen_on_x",
+              "value": "<boolean>"
+            },
+            {
+              "disabled": false,
+              "key": "order_by",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "desc",
+              "value": "<boolean>"
+            },
+            {
+              "disabled": false,
+              "key": "page",
+              "value": "<integer>"
+            },
+            {
+              "disabled": false,
+              "key": "page_size",
+              "value": "<integer>"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "ccd387c5-587d-498b-aadc-c6bd42d8e209",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "key": "has_shifting_ess",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "date_from",
+                  "value": "<date>"
+                },
+                {
+                  "key": "date_to",
+                  "value": "<date>"
+                },
+                {
+                  "key": "min_ess_score",
+                  "value": "<number>"
+                },
+                {
+                  "key": "max_ess_score",
+                  "value": "<number>"
+                },
+                {
+                  "key": "min_epss_score",
+                  "value": "<number>"
+                },
+                {
+                  "key": "max_epss_score",
+                  "value": "<number>"
+                },
+                {
+                  "key": "seen_on_coalition_honeypots",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_cisa_kev",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_vulncheck_kev",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_exploitdb",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_metasploit",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_github",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_x",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "order_by",
+                  "value": "latest_timeline_date"
+                },
+                {
+                  "key": "desc",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"results\": [\n    {\n      \"cve_id\": \"string\",\n      \"description\": \"string\",\n      \"publish_date\": \"2012-03-11T07:06:38.978Z\",\n      \"assigner\": \"string\",\n      \"latest_timeline_date\": \"1967-02-03T17:46:45.164Z\",\n      \"cess\": {\n        \"probability_exploit_usage\": 0,\n        \"probability_exploit_usage_variation\": 0\n      },\n      \"cvss\": {\n        \"type\": \"\",\n        \"version\": \"\",\n        \"base_score\": 0,\n        \"vector_string\": \"\"\n      },\n      \"epss\": {\n        \"score\": 0,\n        \"variation\": 0\n      },\n      \"repositories\": {\n        \"github\": {\n          \"num_repos\": 0,\n          \"num_repos_with_exploit_keyword\": 0,\n          \"num_repos_with_poc_keyword\": 0\n        }\n      },\n      \"exploits\": {\n        \"exploitdb\": {\n          \"num_exploits\": 0,\n          \"num_verified_exploits\": 0\n        },\n        \"metasploit\": {\n          \"num_exploits\": 0\n        }\n      },\n      \"mentions\": {\n        \"twitter\": {\n          \"num_retweets\": 0,\n          \"num_tweets\": 0\n        }\n      },\n      \"visibility\": {\n        \"cisa_kev\": false,\n        \"vulncheck_kev\": false,\n        \"coalition_honeypots\": false,\n        \"exploitdb\": false,\n        \"metasploit\": false,\n        \"github\": false,\n        \"twitter\": false\n      }\n    },\n    {\n      \"cve_id\": \"string\",\n      \"description\": \"string\",\n      \"publish_date\": \"1983-01-13T15:42:09.136Z\",\n      \"assigner\": \"string\",\n      \"latest_timeline_date\": \"1998-04-04T01:14:09.822Z\",\n      \"cess\": {\n        \"probability_exploit_usage\": 0,\n        \"probability_exploit_usage_variation\": 0\n      },\n      \"cvss\": {\n        \"type\": \"\",\n        \"version\": \"\",\n        \"base_score\": 0,\n        \"vector_string\": \"\"\n      },\n      \"epss\": {\n        \"score\": 0,\n        \"variation\": 0\n      },\n      \"repositories\": {\n        \"github\": {\n          \"num_repos\": 0,\n          \"num_repos_with_exploit_keyword\": 0,\n          \"num_repos_with_poc_keyword\": 0\n        }\n      },\n      \"exploits\": {\n        \"exploitdb\": {\n          \"num_exploits\": 0,\n          \"num_verified_exploits\": 0\n        },\n        \"metasploit\": {\n          \"num_exploits\": 0\n        }\n      },\n      \"mentions\": {\n        \"twitter\": {\n          \"num_retweets\": 0,\n          \"num_tweets\": 0\n        }\n      },\n      \"visibility\": {\n        \"cisa_kev\": false,\n        \"vulncheck_kev\": false,\n        \"coalition_honeypots\": false,\n        \"exploitdb\": false,\n        \"metasploit\": false,\n        \"github\": false,\n        \"twitter\": false\n      }\n    }\n  ],\n  \"page\": 1,\n  \"page_size\": 50,\n  \"total\": 0\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2f26bae8-25d4-4660-b760-e4c44e29f04d",
+          "name": "Unprocessable Content",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "key": "has_shifting_ess",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "date_from",
+                  "value": "<date>"
+                },
+                {
+                  "key": "date_to",
+                  "value": "<date>"
+                },
+                {
+                  "key": "min_ess_score",
+                  "value": "<number>"
+                },
+                {
+                  "key": "max_ess_score",
+                  "value": "<number>"
+                },
+                {
+                  "key": "min_epss_score",
+                  "value": "<number>"
+                },
+                {
+                  "key": "max_epss_score",
+                  "value": "<number>"
+                },
+                {
+                  "key": "seen_on_coalition_honeypots",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_cisa_kev",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_vulncheck_kev",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_exploitdb",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_metasploit",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_github",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_x",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "order_by",
+                  "value": "latest_timeline_date"
+                },
+                {
+                  "key": "desc",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"cve_id: Not a valid CVE string. Ex: CVE-XXXX-XXXX\",\n  \"status\": 422,\n  \"title\": \"Unprocessable Entity\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ea45ee1f-6eb6-4335-8dd9-1895e6ce52e1",
+          "name": "Return JSON with reason of internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "key": "has_shifting_ess",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "date_from",
+                  "value": "<date>"
+                },
+                {
+                  "key": "date_to",
+                  "value": "<date>"
+                },
+                {
+                  "key": "min_ess_score",
+                  "value": "<number>"
+                },
+                {
+                  "key": "max_ess_score",
+                  "value": "<number>"
+                },
+                {
+                  "key": "min_epss_score",
+                  "value": "<number>"
+                },
+                {
+                  "key": "max_epss_score",
+                  "value": "<number>"
+                },
+                {
+                  "key": "seen_on_coalition_honeypots",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_cisa_kev",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_vulncheck_kev",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_exploitdb",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_metasploit",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_github",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "seen_on_x",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "order_by",
+                  "value": "latest_timeline_date"
+                },
+                {
+                  "key": "desc",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"An unexpected error occurred\",\n  \"status\": 500,\n  \"title\": \"Internal Server Error\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d2f386dc-9352-4e28-ba19-6245c240900a",
+      "name": "Get CVE",
+      "request": {
+        "name": "Get CVE",
+        "description": {
+          "content": "Retrieve information about a single CVE",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "cve",
+            ":cve_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "cve_id",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "0b2a1fc4-3381-4a9e-b3bd-b0bd336e1308",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"cve_id\": \"string\",\n  \"description\": \"string\",\n  \"publish_date\": \"2022-11-19T16:10:58.576Z\",\n  \"assigner\": \"string\",\n  \"latest_timeline_date\": \"1983-08-13T02:19:17.222Z\",\n  \"cess\": {\n    \"probability_exploit_usage\": 0,\n    \"probability_exploit_usage_variation\": 0\n  },\n  \"cvss\": {\n    \"type\": \"\",\n    \"version\": \"\",\n    \"base_score\": 0,\n    \"vector_string\": \"\"\n  },\n  \"epss\": {\n    \"score\": 0,\n    \"variation\": 0\n  },\n  \"repositories\": {\n    \"github\": {\n      \"num_repos\": 0,\n      \"num_repos_with_exploit_keyword\": 0,\n      \"num_repos_with_poc_keyword\": 0\n    }\n  },\n  \"exploits\": {\n    \"exploitdb\": {\n      \"num_exploits\": 0,\n      \"num_verified_exploits\": 0\n    },\n    \"metasploit\": {\n      \"num_exploits\": 0\n    }\n  },\n  \"mentions\": {\n    \"twitter\": {\n      \"num_retweets\": 0,\n      \"num_tweets\": 0\n    }\n  },\n  \"visibility\": {\n    \"cisa_kev\": false,\n    \"vulncheck_kev\": false,\n    \"coalition_honeypots\": false,\n    \"exploitdb\": false,\n    \"metasploit\": false,\n    \"github\": false,\n    \"twitter\": false\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1c43a0d9-29c2-46a6-a827-910db1cd993f",
+          "name": "Unprocessable Content",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"cve_id: Not a valid CVE string. Ex: CVE-XXXX-XXXX\",\n  \"status\": 422,\n  \"title\": \"Unprocessable Entity\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "7b20f677-a021-4766-be99-f023f7a48595",
+          "name": "Return JSON with reason of internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"An unexpected error occurred\",\n  \"status\": 500,\n  \"title\": \"Internal Server Error\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a9b8960d-2563-45cc-9520-2d540e1eb35e",
+      "name": "Get CVE ESS History",
+      "request": {
+        "name": "Get CVE ESS History",
+        "description": {
+          "content": "Retrieve history information about a single CVE",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "cve",
+            ":cve_id",
+            "history"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "latest",
+              "value": "<boolean>"
+            },
+            {
+              "disabled": false,
+              "key": "date_from",
+              "value": "<date>"
+            },
+            {
+              "disabled": false,
+              "key": "date_to",
+              "value": "<date>"
+            },
+            {
+              "disabled": false,
+              "key": "page",
+              "value": "<integer>"
+            },
+            {
+              "disabled": false,
+              "key": "page_size",
+              "value": "<integer>"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "cve_id",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "2e0669c4-d1a2-4250-88db-52293f85d715",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "latest",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "date_from",
+                  "value": "<date>"
+                },
+                {
+                  "key": "date_to",
+                  "value": "<date>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"results\": [\n    {\n      \"timeline_date\": \"2021-09-25T21:29:52.403Z\",\n      \"latest_entry\": false,\n      \"description\": \"string\",\n      \"cess\": {\n        \"probability_exploit_usage\": 0,\n        \"probability_exploit_usage_variation\": 0\n      },\n      \"cvss\": {\n        \"type\": \"\",\n        \"version\": \"\",\n        \"base_score\": 0,\n        \"vector_string\": \"\"\n      },\n      \"epss\": {\n        \"score\": 0,\n        \"variation\": 0\n      },\n      \"repositories\": {\n        \"github\": {\n          \"num_repos\": 0,\n          \"num_repos_with_exploit_keyword\": 0,\n          \"num_repos_with_poc_keyword\": 0\n        }\n      },\n      \"exploits\": {\n        \"exploitdb\": {\n          \"num_exploits\": 0,\n          \"num_verified_exploits\": 0\n        },\n        \"metasploit\": {\n          \"num_exploits\": 0\n        }\n      },\n      \"mentions\": {\n        \"twitter\": {\n          \"num_retweets\": 0,\n          \"num_tweets\": 0\n        }\n      },\n      \"visibility\": {\n        \"cisa_kev\": false,\n        \"vulncheck_kev\": false,\n        \"coalition_honeypots\": false,\n        \"exploitdb\": false,\n        \"metasploit\": false,\n        \"github\": false,\n        \"twitter\": false\n      }\n    },\n    {\n      \"timeline_date\": \"1996-06-04T17:52:38.090Z\",\n      \"latest_entry\": true,\n      \"description\": \"string\",\n      \"cess\": {\n        \"probability_exploit_usage\": 0,\n        \"probability_exploit_usage_variation\": 0\n      },\n      \"cvss\": {\n        \"type\": \"\",\n        \"version\": \"\",\n        \"base_score\": 0,\n        \"vector_string\": \"\"\n      },\n      \"epss\": {\n        \"score\": 0,\n        \"variation\": 0\n      },\n      \"repositories\": {\n        \"github\": {\n          \"num_repos\": 0,\n          \"num_repos_with_exploit_keyword\": 0,\n          \"num_repos_with_poc_keyword\": 0\n        }\n      },\n      \"exploits\": {\n        \"exploitdb\": {\n          \"num_exploits\": 0,\n          \"num_verified_exploits\": 0\n        },\n        \"metasploit\": {\n          \"num_exploits\": 0\n        }\n      },\n      \"mentions\": {\n        \"twitter\": {\n          \"num_retweets\": 0,\n          \"num_tweets\": 0\n        }\n      },\n      \"visibility\": {\n        \"cisa_kev\": false,\n        \"vulncheck_kev\": false,\n        \"coalition_honeypots\": false,\n        \"exploitdb\": false,\n        \"metasploit\": false,\n        \"github\": false,\n        \"twitter\": false\n      }\n    }\n  ],\n  \"page\": 1,\n  \"page_size\": 50,\n  \"total\": 0\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1fa15779-d922-4927-b63e-4213fa79d379",
+          "name": "Unprocessable Content",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "latest",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "date_from",
+                  "value": "<date>"
+                },
+                {
+                  "key": "date_to",
+                  "value": "<date>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"cve_id: Not a valid CVE string. Ex: CVE-XXXX-XXXX\",\n  \"status\": 422,\n  \"title\": \"Unprocessable Entity\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "3860afc5-01a4-4564-94c1-8c2451175bd1",
+          "name": "Return JSON with reason of internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "latest",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "date_from",
+                  "value": "<date>"
+                },
+                {
+                  "key": "date_to",
+                  "value": "<date>"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"An unexpected error occurred\",\n  \"status\": 500,\n  \"title\": \"Internal Server Error\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a4899bce-3fd3-41ab-b38b-5d567061d01f",
+      "name": "List ExploitDB Exploits For CVE",
+      "request": {
+        "name": "List ExploitDB Exploits For CVE",
+        "description": {
+          "content": "Retrieve information about a exploits from ExploitDB of a CVE",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "cve",
+            ":cve_id",
+            "exploits",
+            "exploitdb"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "page",
+              "value": "<integer>"
+            },
+            {
+              "disabled": false,
+              "key": "page_size",
+              "value": "<integer>"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "cve_id",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "62249d03-337f-4c24-a92b-6cb6db154963",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "exploits",
+                "exploitdb"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"results\": [\n    {\n      \"exploit_id\": \"string\",\n      \"description\": \"string\",\n      \"verified\": true,\n      \"type\": \"string\",\n      \"exploit_url\": \"string\"\n    },\n    {\n      \"exploit_id\": \"string\",\n      \"description\": \"string\",\n      \"verified\": true,\n      \"type\": \"string\",\n      \"exploit_url\": \"string\"\n    }\n  ],\n  \"page\": 1,\n  \"page_size\": 50,\n  \"total\": 0\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "3a2166d4-d911-4087-9ed2-9aa92ef2f1c8",
+          "name": "Unprocessable Content",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "exploits",
+                "exploitdb"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"cve_id: Not a valid CVE string. Ex: CVE-XXXX-XXXX\",\n  \"status\": 422,\n  \"title\": \"Unprocessable Entity\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "07b76f2c-4f71-400d-9a7a-0446f1b46bb5",
+          "name": "Return JSON with reason of internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "exploits",
+                "exploitdb"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"An unexpected error occurred\",\n  \"status\": 500,\n  \"title\": \"Internal Server Error\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "348d83cf-cab3-4992-8b01-3db00de703ef",
+      "name": "List Metasploit Modules For CVE",
+      "request": {
+        "name": "List Metasploit Modules For CVE",
+        "description": {
+          "content": "Retrieve information about a exploit from Metasploit of a CVE",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "cve",
+            ":cve_id",
+            "exploits",
+            "metasploit"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "page",
+              "value": "<integer>"
+            },
+            {
+              "disabled": false,
+              "key": "page_size",
+              "value": "<integer>"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "cve_id",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "f1a8ea54-be82-4eb0-8971-3fa592d4b088",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "exploits",
+                "metasploit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"results\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"path\": \"string\",\n      \"disclosure_date\": \"1960-12-14T07:57:09.665Z\"\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"path\": \"string\",\n      \"disclosure_date\": \"1988-12-05T18:35:39.523Z\"\n    }\n  ],\n  \"page\": 1,\n  \"page_size\": 50,\n  \"total\": 0\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f89efee7-0450-4716-8210-7321074ae5cf",
+          "name": "Unprocessable Content",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "exploits",
+                "metasploit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"cve_id: Not a valid CVE string. Ex: CVE-XXXX-XXXX\",\n  \"status\": 422,\n  \"title\": \"Unprocessable Entity\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "474b1d4f-c756-4798-abdd-455757803bd1",
+          "name": "Return JSON with reason of internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "exploits",
+                "metasploit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"An unexpected error occurred\",\n  \"status\": 500,\n  \"title\": \"Internal Server Error\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e4991226-35d1-4466-8dfb-9125c86d9570",
+      "name": "List Twitter Mentions For CVE",
+      "request": {
+        "name": "List Twitter Mentions For CVE",
+        "description": {
+          "content": "Retrieve information about a mentions from Twitter of a CVE",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "cve",
+            ":cve_id",
+            "mentions",
+            "twitter"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "page",
+              "value": "<integer>"
+            },
+            {
+              "disabled": false,
+              "key": "page_size",
+              "value": "<integer>"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "cve_id",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "9f9942d1-228f-47fb-ad34-06ece0b363b8",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "mentions",
+                "twitter"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"results\": [\n    {\n      \"tweet_id\": 3606,\n      \"text\": \"string\",\n      \"username\": \"string\",\n      \"reply_count\": 9032,\n      \"like_count\": 7861,\n      \"quote_count\": 7293,\n      \"is_retweet\": true,\n      \"is_reply\": false\n    },\n    {\n      \"tweet_id\": 9903,\n      \"text\": \"string\",\n      \"username\": \"string\",\n      \"reply_count\": 5763,\n      \"like_count\": 195,\n      \"quote_count\": 5208,\n      \"is_retweet\": false,\n      \"is_reply\": false\n    }\n  ],\n  \"page\": 1,\n  \"page_size\": 50,\n  \"total\": 0\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "9d88bd12-00bb-44be-9b81-58f4040e5672",
+          "name": "Unprocessable Content",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "mentions",
+                "twitter"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"cve_id: Not a valid CVE string. Ex: CVE-XXXX-XXXX\",\n  \"status\": 422,\n  \"title\": \"Unprocessable Entity\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "687a7601-f0db-4bc9-98ba-0189cd086299",
+          "name": "Return JSON with reason of internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "mentions",
+                "twitter"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"An unexpected error occurred\",\n  \"status\": 500,\n  \"title\": \"Internal Server Error\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c5c33527-b73d-489f-b8ed-9d03af634127",
+      "name": "List GitHub Repositories Mentioning CVE",
+      "request": {
+        "name": "List GitHub Repositories Mentioning CVE",
+        "description": {
+          "content": "Retrieve information about a repositories from Github of a CVE",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "cve",
+            ":cve_id",
+            "repositories",
+            "github"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "page",
+              "value": "<integer>"
+            },
+            {
+              "disabled": false,
+              "key": "page_size",
+              "value": "<integer>"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "cve_id",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "886f2e03-17dd-4579-846f-c0ea9eecc20a",
+          "name": "Successful Response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "repositories",
+                "github"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"results\": [\n    {\n      \"node_id\": \"string\",\n      \"description\": \"string\",\n      \"repo_name\": \"string\",\n      \"size\": 4295,\n      \"html_url\": \"string\",\n      \"url\": \"string\",\n      \"topics\": [\n        \"string\",\n        \"string\"\n      ],\n      \"keywords\": {\n        \"poc\": false,\n        \"exploit\": false\n      },\n      \"created_at\": \"2004-07-05T09:59:36.567Z\",\n      \"updated_at\": \"1947-11-25T21:32:15.031Z\"\n    },\n    {\n      \"node_id\": \"string\",\n      \"description\": \"string\",\n      \"repo_name\": \"string\",\n      \"size\": 7598,\n      \"html_url\": \"string\",\n      \"url\": \"string\",\n      \"topics\": [\n        \"string\",\n        \"string\"\n      ],\n      \"keywords\": {\n        \"poc\": false,\n        \"exploit\": false\n      },\n      \"created_at\": \"1988-06-25T18:15:11.587Z\",\n      \"updated_at\": \"2025-04-03T02:07:52.174Z\"\n    }\n  ],\n  \"page\": 1,\n  \"page_size\": 50,\n  \"total\": 0\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "8223c7f7-241d-4f87-b1f0-61405bbb888c",
+          "name": "Unprocessable Content",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "repositories",
+                "github"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"cve_id: Not a valid CVE string. Ex: CVE-XXXX-XXXX\",\n  \"status\": 422,\n  \"title\": \"Unprocessable Entity\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d943a42a-d26b-4cf4-b577-d2d3fb3ed3e3",
+          "name": "Return JSON with reason of internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "cve",
+                ":cve_id",
+                "repositories",
+                "github"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cve_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"An unexpected error occurred\",\n  \"status\": 500,\n  \"title\": \"Internal Server Error\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ess-api.coalitioninc.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ebde6ca3-9c8e-42b7-9090-f90a7a849d91",
+    "name": "Coalition Exploit Scoring System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Explore vulnerabilities and find their details and insights in a unified platform. Access over 200,000 CVEs with Coalition ESS scores, powered by machine learning algorithms for vulnerability assessment.",
+      "type": "text/plain"
+    }
+  }
+}

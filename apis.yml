@@ -77,13 +77,13 @@ apis:
     url: json-schema/coalition-ess-cve-schema.json
   - type: JSONStructure
     url: json-structure/coalition-ess-cve-structure.json
-  - type: Example
+  - type: Examples
     url: examples/coalition-ess-listCves-example.json
-  - type: Example
+  - type: Examples
     url: examples/coalition-ess-getCve-example.json
-  - type: Example
+  - type: Examples
     url: examples/coalition-ess-getEssHistory-example.json
-  - type: Example
+  - type: Examples
     url: examples/coalition-ess-listGithubRepos-example.json
   - url: graphql/coalition-inc-graphql.md
     type: GraphQL
@@ -107,7 +107,7 @@ apis:
   - Brokers
   - Webhooks
   properties:
-  - type: SignUp
+  - type: Signup
     url: https://web.coalitioninc.com/partnership.html
   - type: Overview
     url: https://www.coalitioninc.com/brokers/api

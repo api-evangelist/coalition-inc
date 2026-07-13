@@ -2,13 +2,18 @@
   "repo": "coalition-inc",
   "feeds": [
     {
-      "source": "https://www.coalitioninc.com/blog",
-      "feed_url": "",
+      "source": "https://www.coalitioninc.com/brokers/broker-iq",
+      "feed_url": "https://www.coalitioninc.com/brokers/broker-iq",
+      "title": "",
       "saved": 0,
-      "method": "agent-scrape"
+      "method": "none"
+    },
+    {
+      "source": "https://www.coalitioninc.com/announcements",
+      "error": "HTTPError"
     }
   ],
-  "post_count": 3,
-  "fetched": "2026-06-27T12:33:16Z",
-  "agent_pulled": "2026-06-27"
+  "post_count": 6,
+  "fetched": "2026-07-11T11:50:51Z",
+  "agent_pulled": "2026-07-04"
 }

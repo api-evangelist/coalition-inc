@@ -120,6 +120,8 @@ apis:
   - type: Announcement
     url: https://www.coalitioninc.com/announcements/coalition-introduces-new-apis-to-power-executive-risks-insurance
 common:
+- type: AgenticAccess
+  url: agentic-access/coalition-inc-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/coalition-inc-vulnerability-disclosure.yml
 - type: DomainSecurity

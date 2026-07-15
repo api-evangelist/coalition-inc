@@ -1,0 +1,84 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/coalition-ess-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 7
+  by_action_class:
+    connected: 7
+  by_consequence:
+    read: 7
+  human_in_the_loop_required: 0
+operations:
+- path: /cve
+  method: get
+  operationId: cve_cve_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /cve/{cve_id}
+  method: get
+  operationId: cve_by_id_cve__cve_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /cve/{cve_id}/history
+  method: get
+  operationId: cve_history_by_id_cve__cve_id__history_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /cve/{cve_id}/exploits/exploitdb
+  method: get
+  operationId: exploits_exploitdb_by_cve_cve__cve_id__exploits_exploitdb_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /cve/{cve_id}/exploits/metasploit
+  method: get
+  operationId: exploits_metasploit_by_cve_cve__cve_id__exploits_metasploit_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /cve/{cve_id}/mentions/twitter
+  method: get
+  operationId: mentions_twitter_by_cve_cve__cve_id__mentions_twitter_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /cve/{cve_id}/repositories/github
+  method: get
+  operationId: repositories_github_by_cve_cve__cve_id__repositories_github_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

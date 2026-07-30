@@ -20,9 +20,21 @@ description: Coalition is a San Francisco–headquartered cyber insurance and ac
   is partner-gated (no public OpenAPI), but the ESS API is fully public with OpenAPI
   3.1, an interactive docs UI, and ReDoc.
 type: Index
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Provider
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/coalition-inc.png
 tags:
 - Cyber Insurance
 - Insurance
@@ -45,28 +57,54 @@ created: '2026-05-25'
 modified: '2026-05-25'
 specificationVersion: '0.20'
 apis:
-- aid: coalition-inc:exploit-scoring-system
-  name: Coalition Exploit Scoring System (ESS) API
-  description: Public REST API exposing Coalition's machine-learning Exploit Scoring
-    System over more than 200,000 CVEs. Returns vulnerability detail, ESS / EPSS /
-    CVSS score summaries, ESS shift history, public exploit references (ExploitDB,
-    Metasploit), GitHub repository mentions and keyword extraction, and Twitter mention
-    timelines. Useful for vulnerability triage, prioritization, and threat-intel enrichment.
+- aid: coalition-inc:active-insurance-api
+  name: Coalition Active Insurance API
+  description: >-
+    Partner-gated REST API that brokers and distribution partners use to rate, quote, bind, generate documents
+    (quote PDF, Coalition Risk Assessment, signature bundle, specimen policy), and manage renewals for
+    Coalition's commercial insurance lines — Cyber, Technology E&O, Executive Risks (D&O, EPL, Fiduciary,
+    Crime), Miscellaneous Professional Liability, and AI coverage. Supports webhook events and ships with
+    a sandbox environment, dedicated implementation manager, and QA test plans. Coverage spans the United
+    States and Canada, with a 99.9% uptime SLA and sub-2-second quote response target. Documentation is
+    provisioned to vetted partners; no public OpenAPI is published.
+  humanURL: https://www.coalitioninc.com/brokers/api
+  tags:
+  - Cyber Insurance
+  - Quote
+  - Bind
+  - Policy
+  - Brokers
+  - Webhooks
+  properties:
+  - type: Signup
+    url: https://web.coalitioninc.com/partnership.html
+  - type: Overview
+    url: https://www.coalitioninc.com/brokers/api
+  - type: BrokerPortal
+    url: https://www.coalitioninc.com/brokers/broker-iq
+  - type: Blog
+    url: >-
+      https://www.coalitioninc.com/blog/coalition-apis-helping-power-the-future-of-insurance-distribution
+  - type: Announcement
+    url: >-
+      https://www.coalitioninc.com/announcements/coalition-launches-new-API-solution-for-streamlined-partner-integration
+  - type: Announcement
+    url: >-
+      https://www.coalitioninc.com/announcements/coalition-introduces-new-apis-to-power-executive-risks-insurance
+- aid: coalition-inc:coalition-inc-cve-api
+  name: Coalition Cve API
+  description: The Cve API from Coalition — 7 operation(s) for cve.
   humanURL: https://ess.coalitioninc.com
   baseURL: https://ess-api.coalitioninc.com
   tags:
-  - CVE
-  - Vulnerability
-  - Exploit Scoring
-  - Threat Intelligence
-  - Cybersecurity
+  - Cve
   properties:
+  - type: OpenAPI
+    url: openapi/coalition-inc-cve-api-openapi.yml
   - type: Documentation
     url: https://ess-api.coalitioninc.com/docs
   - type: ReDoc
     url: https://ess-api.coalitioninc.com/redoc
-  - type: OpenAPI
-    url: https://ess-api.coalitioninc.com/openapi.json
   - type: LocalOpenAPI
     url: openapi/coalition-ess-openapi.yml
   - type: Console
@@ -85,40 +123,8 @@ apis:
     url: examples/coalition-ess-getEssHistory-example.json
   - type: Examples
     url: examples/coalition-ess-listGithubRepos-example.json
-  - url: graphql/coalition-inc-graphql.md
-    type: GraphQL
-- aid: coalition-inc:active-insurance-api
-  name: Coalition Active Insurance API
-  description: Partner-gated REST API that brokers and distribution partners use to
-    rate, quote, bind, generate documents (quote PDF, Coalition Risk Assessment, signature
-    bundle, specimen policy), and manage renewals for Coalition's commercial insurance
-    lines — Cyber, Technology E&O, Executive Risks (D&O, EPL, Fiduciary, Crime), Miscellaneous
-    Professional Liability, and AI coverage. Supports webhook events and ships with
-    a sandbox environment, dedicated implementation manager, and QA test plans. Coverage
-    spans the United States and Canada, with a 99.9% uptime SLA and sub-2-second quote
-    response target. Documentation is provisioned to vetted partners; no public OpenAPI
-    is published.
-  humanURL: https://www.coalitioninc.com/brokers/api
-  tags:
-  - Cyber Insurance
-  - Quote
-  - Bind
-  - Policy
-  - Brokers
-  - Webhooks
-  properties:
-  - type: Signup
-    url: https://web.coalitioninc.com/partnership.html
-  - type: Overview
-    url: https://www.coalitioninc.com/brokers/api
-  - type: BrokerPortal
-    url: https://www.coalitioninc.com/brokers/broker-iq
-  - type: Blog
-    url: https://www.coalitioninc.com/blog/coalition-apis-helping-power-the-future-of-insurance-distribution
-  - type: Announcement
-    url: https://www.coalitioninc.com/announcements/coalition-launches-new-API-solution-for-streamlined-partner-integration
-  - type: Announcement
-    url: https://www.coalitioninc.com/announcements/coalition-introduces-new-apis-to-power-executive-risks-insurance
+  - type: GraphQL
+    url: graphql/coalition-inc-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/coalition-inc-agentic-access.yml

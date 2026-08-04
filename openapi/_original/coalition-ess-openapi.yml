@@ -1,0 +1,1174 @@
+openapi: 3.1.0
+info:
+  title: Coalition Exploit Scoring System API
+  description: Explore vulnerabilities and find their details and insights in a unified
+    platform. Access over 200,000 CVEs with Coalition ESS scores, powered by machine
+    learning algorithms for vulnerability assessment.
+  version: 1.0.0
+servers:
+- url: https://ess-api.coalitioninc.com
+  description: API for Coalition Exploit Scoring System
+paths:
+  /cve:
+    get:
+      summary: List CVEs
+      description: Retrieve CVEs and their details based on granular controls
+      operationId: cve_cve_get
+      parameters:
+      - name: search
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          examples:
+          - remote
+          title: Search
+      - name: has_shifting_ess
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Has Shifting Ess
+      - name: date_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          examples:
+          - YYYY-MM-DD
+          title: Date From
+      - name: date_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          examples:
+          - YYYY-MM-DD
+          title: Date To
+      - name: min_ess_score
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+            maximum: 1
+            minimum: 0
+          - type: 'null'
+          title: Min Ess Score
+      - name: max_ess_score
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+            maximum: 1
+            minimum: 0
+          - type: 'null'
+          title: Max Ess Score
+      - name: min_epss_score
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+            maximum: 1
+            minimum: 0
+          - type: 'null'
+          title: Min Epss Score
+      - name: max_epss_score
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+            maximum: 1
+            minimum: 0
+          - type: 'null'
+          title: Max Epss Score
+      - name: seen_on_coalition_honeypots
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Seen On Coalition Honeypots
+      - name: seen_on_cisa_kev
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Seen On Cisa Kev
+      - name: seen_on_vulncheck_kev
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Seen On Vulncheck Kev
+      - name: seen_on_exploitdb
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Seen On Exploitdb
+      - name: seen_on_metasploit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Seen On Metasploit
+      - name: seen_on_github
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Seen On Github
+      - name: seen_on_x
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Seen On X
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/OrderByEnum'
+          - type: 'null'
+          title: Order By
+      - name: desc
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Desc
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            minimum: 1
+          - type: 'null'
+          default: 1
+          title: Page
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 50
+          title: Page Size
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCveResponse'
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unprocessable Content
+        '500':
+          description: Return JSON with reason of internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  /cve/{cve_id}:
+    get:
+      summary: Get CVE
+      description: Retrieve information about a single CVE
+      operationId: cve_by_id_cve__cve_id__get
+      parameters:
+      - name: cve_id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^CVE-\d{4}-\d{4,7}$
+          title: Cve Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CveInfo'
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unprocessable Content
+        '500':
+          description: Return JSON with reason of internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  /cve/{cve_id}/history:
+    get:
+      summary: Get CVE ESS History
+      description: Retrieve history information about a single CVE
+      operationId: cve_history_by_id_cve__cve_id__history_get
+      parameters:
+      - name: cve_id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^CVE-\d{4}-\d{4,7}$
+          title: Cve Id
+      - name: latest
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Latest
+      - name: date_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          examples:
+          - YYYY-MM-DD
+          title: Date From
+      - name: date_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          examples:
+          - YYYY-MM-DD
+          title: Date To
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            minimum: 1
+          - type: 'null'
+          default: 1
+          title: Page
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 50
+          title: Page Size
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTimelineResponse'
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unprocessable Content
+        '500':
+          description: Return JSON with reason of internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  /cve/{cve_id}/exploits/exploitdb:
+    get:
+      summary: List ExploitDB Exploits For CVE
+      description: Retrieve information about a exploits from ExploitDB of a CVE
+      operationId: exploits_exploitdb_by_cve_cve__cve_id__exploits_exploitdb_get
+      parameters:
+      - name: cve_id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^CVE-\d{4}-\d{4,7}$
+          title: Cve Id
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            minimum: 1
+          - type: 'null'
+          default: 1
+          title: Page
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 50
+          title: Page Size
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedExploitDBFullInfo'
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unprocessable Content
+        '500':
+          description: Return JSON with reason of internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  /cve/{cve_id}/exploits/metasploit:
+    get:
+      summary: List Metasploit Modules For CVE
+      description: Retrieve information about a exploit from Metasploit of a CVE
+      operationId: exploits_metasploit_by_cve_cve__cve_id__exploits_metasploit_get
+      parameters:
+      - name: cve_id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^CVE-\d{4}-\d{4,7}$
+          title: Cve Id
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            minimum: 1
+          - type: 'null'
+          default: 1
+          title: Page
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 50
+          title: Page Size
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMetasploitFullInfo'
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unprocessable Content
+        '500':
+          description: Return JSON with reason of internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  /cve/{cve_id}/mentions/twitter:
+    get:
+      summary: List Twitter Mentions For CVE
+      description: Retrieve information about a mentions from Twitter of a CVE
+      operationId: mentions_twitter_by_cve_cve__cve_id__mentions_twitter_get
+      parameters:
+      - name: cve_id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^CVE-\d{4}-\d{4,7}$
+          title: Cve Id
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            minimum: 1
+          - type: 'null'
+          default: 1
+          title: Page
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 50
+          title: Page Size
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTwitterFullInfo'
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unprocessable Content
+        '500':
+          description: Return JSON with reason of internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  /cve/{cve_id}/repositories/github:
+    get:
+      summary: List GitHub Repositories Mentioning CVE
+      description: Retrieve information about a repositories from Github of a CVE
+      operationId: repositories_github_by_cve_cve__cve_id__repositories_github_get
+      parameters:
+      - name: cve_id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^CVE-\d{4}-\d{4,7}$
+          title: Cve Id
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            minimum: 1
+          - type: 'null'
+          default: 1
+          title: Page
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 50
+          title: Page Size
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTGithubFullInfo'
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unprocessable Content
+        '500':
+          description: Return JSON with reason of internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+components:
+  schemas:
+    CessScoreSummary:
+      properties:
+        probability_exploit_usage:
+          type: number
+          title: Probability Exploit Usage
+          default: 0.0
+        probability_exploit_usage_variation:
+          type: number
+          title: Probability Exploit Usage Variation
+          default: 0.0
+      type: object
+      title: CessScoreSummary
+    CveInfo:
+      properties:
+        cess:
+          $ref: '#/components/schemas/CessScoreSummary'
+          default:
+            probability_exploit_usage: 0.0
+            probability_exploit_usage_variation: 0.0
+        cvss:
+          $ref: '#/components/schemas/CvssScoreSummary'
+          default:
+            type: ''
+            version: ''
+            base_score: 0.0
+            vector_string: ''
+        epss:
+          $ref: '#/components/schemas/EpssScoreSummary'
+          default:
+            score: 0.0
+            variation: 0.0
+        repositories:
+          $ref: '#/components/schemas/RepositorySummary'
+          default:
+            github:
+              num_repos: 0
+              num_repos_with_exploit_keyword: 0
+              num_repos_with_poc_keyword: 0
+        exploits:
+          $ref: '#/components/schemas/ExploitsSummary'
+          default:
+            exploitdb:
+              num_exploits: 0
+              num_verified_exploits: 0
+            metasploit:
+              num_exploits: 0
+        mentions:
+          $ref: '#/components/schemas/MentionsSummary'
+          default:
+            twitter:
+              num_retweets: 0
+              num_tweets: 0
+        visibility:
+          $ref: '#/components/schemas/VisibilitySummary'
+          default:
+            cisa_kev: false
+            vulncheck_kev: false
+            coalition_honeypots: false
+            exploitdb: false
+            metasploit: false
+            github: false
+            twitter: false
+        cve_id:
+          type: string
+          title: Cve Id
+        description:
+          type: string
+          title: Description
+        publish_date:
+          type: string
+          format: date-time
+          title: Publish Date
+        assigner:
+          type: string
+          title: Assigner
+        latest_timeline_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Latest Timeline Date
+      type: object
+      required:
+      - cve_id
+      - description
+      - publish_date
+      - assigner
+      - latest_timeline_date
+      title: CveInfo
+    CvssScoreSummary:
+      properties:
+        type:
+          type: string
+          title: Type
+          default: ''
+        version:
+          type: string
+          title: Version
+          default: ''
+        base_score:
+          type: number
+          title: Base Score
+          default: 0.0
+        impact_score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Impact Score
+        exploitability_score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Exploitability Score
+        vector_string:
+          type: string
+          title: Vector String
+          default: ''
+      type: object
+      title: CvssScoreSummary
+    EpssScoreSummary:
+      properties:
+        score:
+          type: number
+          title: Score
+          default: 0
+        variation:
+          type: number
+          title: Variation
+          default: 0
+      type: object
+      title: EpssScoreSummary
+    ExploitDBFullInfo:
+      properties:
+        exploit_id:
+          type: string
+          title: Exploit Id
+        description:
+          type: string
+          title: Description
+        verified:
+          type: boolean
+          title: Verified
+        type:
+          type: string
+          title: Type
+        exploit_url:
+          type: string
+          title: Exploit Url
+          readOnly: true
+      type: object
+      required:
+      - exploit_id
+      - description
+      - verified
+      - type
+      - exploit_url
+      title: ExploitDBFullInfo
+    ExploitDBSummary:
+      properties:
+        num_exploits:
+          type: integer
+          title: Num Exploits
+          default: 0
+        num_verified_exploits:
+          type: integer
+          title: Num Verified Exploits
+          default: 0
+      type: object
+      title: ExploitDBSummary
+    ExploitsSummary:
+      properties:
+        exploitdb:
+          $ref: '#/components/schemas/ExploitDBSummary'
+          default:
+            num_exploits: 0
+            num_verified_exploits: 0
+        metasploit:
+          $ref: '#/components/schemas/MetasploitSummary'
+          default:
+            num_exploits: 0
+      type: object
+      title: ExploitsSummary
+    GithubFullInfo:
+      properties:
+        node_id:
+          type: string
+          title: Node Id
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        repo_name:
+          type: string
+          title: Repo Name
+        size:
+          type: integer
+          title: Size
+        html_url:
+          type: string
+          title: Html Url
+        url:
+          type: string
+          title: Url
+        topics:
+          items:
+            type: string
+          type: array
+          title: Topics
+        keywords:
+          $ref: '#/components/schemas/GithubKeywords'
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+      type: object
+      required:
+      - node_id
+      - description
+      - repo_name
+      - size
+      - html_url
+      - url
+      - topics
+      - keywords
+      - created_at
+      - updated_at
+      title: GithubFullInfo
+    GithubKeywords:
+      properties:
+        poc:
+          type: boolean
+          title: Poc
+          default: false
+        exploit:
+          type: boolean
+          title: Exploit
+          default: false
+      type: object
+      title: GithubKeywords
+    GithubSummary:
+      properties:
+        num_repos:
+          type: integer
+          title: Num Repos
+          default: 0
+        num_repos_with_poc_keyword:
+          type: integer
+          title: Num Repos With Poc Keyword
+          default: 0
+        num_repos_with_exploit_keyword:
+          type: integer
+          title: Num Repos With Exploit Keyword
+          default: 0
+      type: object
+      title: GithubSummary
+    InternalServerError:
+      properties:
+        status:
+          type: integer
+          title: Status
+        title:
+          type: string
+          title: Title
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - status
+      - title
+      - message
+      title: InternalServerError
+      example:
+        message: An unexpected error occurred
+        status: 500
+        title: Internal Server Error
+    MentionsSummary:
+      properties:
+        twitter:
+          $ref: '#/components/schemas/TwitterSummary'
+          default:
+            num_tweets: 0
+            num_retweets: 0
+      type: object
+      title: MentionsSummary
+    MetasploitFullInfo:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          title: Type
+        path:
+          type: string
+          title: Path
+        disclosure_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Disclosure Date
+      type: object
+      required:
+      - name
+      - type
+      - path
+      - disclosure_date
+      title: MetasploitFullInfo
+    MetasploitSummary:
+      properties:
+        num_exploits:
+          type: integer
+          title: Num Exploits
+          default: 0
+      type: object
+      title: MetasploitSummary
+    OrderByEnum:
+      type: string
+      enum:
+      - published_date
+      - epss_score
+      - probability_exploit_usage
+      - latest_timeline_date
+      - probability_exploit_usage_variation
+      - epss_variation
+      title: OrderByEnum
+    PaginatedCveResponse:
+      properties:
+        page:
+          type: integer
+          title: Page
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 50
+        total:
+          type: integer
+          title: Total
+          default: 0
+        results:
+          items:
+            $ref: '#/components/schemas/CveInfo'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: PaginatedCveResponse
+    PaginatedExploitDBFullInfo:
+      properties:
+        page:
+          type: integer
+          title: Page
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 50
+        total:
+          type: integer
+          title: Total
+          default: 0
+        results:
+          items:
+            $ref: '#/components/schemas/ExploitDBFullInfo'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: PaginatedExploitDBFullInfo
+    PaginatedMetasploitFullInfo:
+      properties:
+        page:
+          type: integer
+          title: Page
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 50
+        total:
+          type: integer
+          title: Total
+          default: 0
+        results:
+          items:
+            $ref: '#/components/schemas/MetasploitFullInfo'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: PaginatedMetasploitFullInfo
+    PaginatedTGithubFullInfo:
+      properties:
+        page:
+          type: integer
+          title: Page
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 50
+        total:
+          type: integer
+          title: Total
+          default: 0
+        results:
+          items:
+            $ref: '#/components/schemas/GithubFullInfo'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: PaginatedTGithubFullInfo
+    PaginatedTimelineResponse:
+      properties:
+        page:
+          type: integer
+          title: Page
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 50
+        total:
+          type: integer
+          title: Total
+          default: 0
+        results:
+          items:
+            $ref: '#/components/schemas/TimelineInfo'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: PaginatedTimelineResponse
+    PaginatedTwitterFullInfo:
+      properties:
+        page:
+          type: integer
+          title: Page
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 50
+        total:
+          type: integer
+          title: Total
+          default: 0
+        results:
+          items:
+            $ref: '#/components/schemas/TwitterFullInfo'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: PaginatedTwitterFullInfo
+    RepositorySummary:
+      properties:
+        github:
+          $ref: '#/components/schemas/GithubSummary'
+          default:
+            num_repos: 0
+            num_repos_with_poc_keyword: 0
+            num_repos_with_exploit_keyword: 0
+      type: object
+      title: RepositorySummary
+    TimelineInfo:
+      properties:
+        cess:
+          $ref: '#/components/schemas/CessScoreSummary'
+          default:
+            probability_exploit_usage: 0.0
+            probability_exploit_usage_variation: 0.0
+        cvss:
+          $ref: '#/components/schemas/CvssScoreSummary'
+          default:
+            type: ''
+            version: ''
+            base_score: 0.0
+            vector_string: ''
+        epss:
+          $ref: '#/components/schemas/EpssScoreSummary'
+          default:
+            score: 0.0
+            variation: 0.0
+        repositories:
+          $ref: '#/components/schemas/RepositorySummary'
+          default:
+            github:
+              num_repos: 0
+              num_repos_with_exploit_keyword: 0
+              num_repos_with_poc_keyword: 0
+        exploits:
+          $ref: '#/components/schemas/ExploitsSummary'
+          default:
+            exploitdb:
+              num_exploits: 0
+              num_verified_exploits: 0
+            metasploit:
+              num_exploits: 0
+        mentions:
+          $ref: '#/components/schemas/MentionsSummary'
+          default:
+            twitter:
+              num_retweets: 0
+              num_tweets: 0
+        visibility:
+          $ref: '#/components/schemas/VisibilitySummary'
+          default:
+            cisa_kev: false
+            vulncheck_kev: false
+            coalition_honeypots: false
+            exploitdb: false
+            metasploit: false
+            github: false
+            twitter: false
+        timeline_date:
+          type: string
+          format: date-time
+          title: Timeline Date
+        latest_entry:
+          type: boolean
+          title: Latest Entry
+        description:
+          type: string
+          title: Description
+      type: object
+      required:
+      - timeline_date
+      - latest_entry
+      - description
+      title: TimelineInfo
+    TwitterFullInfo:
+      properties:
+        tweet_id:
+          type: integer
+          title: Tweet Id
+        text:
+          type: string
+          title: Text
+        username:
+          type: string
+          title: Username
+        reply_count:
+          type: integer
+          title: Reply Count
+        like_count:
+          type: integer
+          title: Like Count
+        quote_count:
+          type: integer
+          title: Quote Count
+        is_retweet:
+          type: boolean
+          title: Is Retweet
+        is_reply:
+          type: boolean
+          title: Is Reply
+      type: object
+      required:
+      - tweet_id
+      - text
+      - username
+      - reply_count
+      - like_count
+      - quote_count
+      - is_retweet
+      - is_reply
+      title: TwitterFullInfo
+    TwitterSummary:
+      properties:
+        num_tweets:
+          type: integer
+          title: Num Tweets
+          default: 0
+        num_retweets:
+          type: integer
+          title: Num Retweets
+          default: 0
+      type: object
+      title: TwitterSummary
+    ValidationError:
+      properties:
+        status:
+          type: integer
+          title: Status
+        title:
+          type: string
+          title: Title
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - status
+      - title
+      - message
+      title: ValidationError
+      example:
+        message: 'cve_id: Not a valid CVE string. Ex: CVE-XXXX-XXXX'
+        status: 422
+        title: Unprocessable Entity
+    VisibilitySummary:
+      properties:
+        cisa_kev:
+          type: boolean
+          title: Cisa Kev
+          default: false
+        vulncheck_kev:
+          type: boolean
+          title: Vulncheck Kev
+          default: false
+        coalition_honeypots:
+          type: boolean
+          title: Coalition Honeypots
+          default: false
+        exploitdb:
+          type: boolean
+          title: Exploitdb
+          default: false
+        metasploit:
+          type: boolean
+          title: Metasploit
+          default: false
+        github:
+          type: boolean
+          title: Github
+          default: false
+        twitter:
+          type: boolean
+          title: Twitter
+          default: false
+      type: object
+      title: VisibilitySummary

@@ -1,0 +1,14 @@
+{
+  "provider": "coalition-inc",
+  "sources": [
+    "coalition-inc-cve-api-openapi.yml"
+  ],
+  "outputs": [
+    "coalition-inc-cve-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

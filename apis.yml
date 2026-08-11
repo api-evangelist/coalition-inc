@@ -106,7 +106,7 @@ apis:
   - type: ReDoc
     url: https://ess-api.coalitioninc.com/redoc
   - type: LocalOpenAPI
-    url: openapi/coalition-ess-openapi.yml
+    url: openapi/_original/coalition-ess-openapi.yml
   - type: Console
     url: https://ess.coalitioninc.com/explore/
   - type: SpectralRules

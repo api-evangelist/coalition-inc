@@ -70,6 +70,13 @@ apis:
   humanURL: https://www.coalitioninc.com/brokers/api
   tags:
   - Cyber Insurance
+  - Quotes
+  - Bind
+  - Policy
+  - Brokers
+  - Webhook
+  tags_raw:
+  - Cyber Insurance
   - Quote
   - Bind
   - Policy
@@ -97,6 +104,8 @@ apis:
   humanURL: https://ess.coalitioninc.com
   baseURL: https://ess-api.coalitioninc.com
   tags:
+  - CVE
+  tags_raw:
   - Cve
   properties:
   - type: OpenAPI

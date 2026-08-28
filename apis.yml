@@ -20,6 +20,18 @@ description: Coalition is a San Francisco–headquartered cyber insurance and ac
   is partner-gated (no public OpenAPI), but the ESS API is fully public with OpenAPI
   3.1, an interactive docs UI, and ReDoc.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown

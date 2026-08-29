@@ -1,0 +1,26 @@
+slug: coalition-inc
+provider: Coalition
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Insurance
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Cve
+  spec_file: coalition-inc-cve-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.9
+  evidence: Access over 200,000 CVEs with Coalition ESS scores, powered by machine learning algorithms
+    for vulnerability assessment
+  reason: Operations list and score CVEs, retrieve exploit availability from ExploitDB/Metasploit and
+    public mentions — vulnerability intelligence and assessment, squarely Vulnerability Management despite
+    the vendor being a cyber insurer.

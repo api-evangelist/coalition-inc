@@ -147,6 +147,9 @@ apis:
   - type: GraphQL
     url: graphql/coalition-inc-graphql.md
 common:
+- type: CapabilityMap
+  url: capabilities/coalition-inc-capability-edges.yml
+  name: Coalition Business Capability Map
 - type: AgenticAccess
   url: agentic-access/coalition-inc-agentic-access.yml
 - type: VulnerabilityDisclosure

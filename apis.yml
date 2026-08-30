@@ -116,7 +116,7 @@ apis:
   humanURL: https://ess.coalitioninc.com
   baseURL: https://ess-api.coalitioninc.com
   tags:
-  - CVE
+  - Cve
   tags_raw:
   - Cve
   properties:

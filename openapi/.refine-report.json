@@ -1,7 +1,7 @@
 {
   "provider": "coalition-inc",
   "sources": [
-    "coalition-inc-cve-api-openapi.yml"
+    "_original/coalition-ess-openapi.yml"
   ],
   "outputs": [
     "coalition-inc-cve-api-openapi.yml"
@@ -9,6 +9,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "coalition-ess-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "coalition-ess-openapi.yml: tagged paths GET /cve -> Cve",
+    "coalition-ess-openapi.yml: tagged paths GET /cve/{cve_id} -> Cve",
+    "coalition-ess-openapi.yml: tagged paths GET /cve/{cve_id}/history -> Cve",
+    "coalition-ess-openapi.yml: tagged paths GET /cve/{cve_id}/exploits/exploitdb -> Cve",
+    "coalition-ess-openapi.yml: tagged paths GET /cve/{cve_id}/exploits/metasploit -> Cve",
+    "coalition-ess-openapi.yml: tagged paths GET /cve/{cve_id}/mentions/twitter -> Cve",
+    "coalition-ess-openapi.yml: tagged paths GET /cve/{cve_id}/repositories/github -> Cve",
+    "coalition-ess-openapi.yml: declared missing tag: Cve",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "coalition-inc-cve-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

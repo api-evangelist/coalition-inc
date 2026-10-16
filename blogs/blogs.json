@@ -2,19 +2,29 @@
   "repo": "coalition-inc",
   "feeds": [
     {
-      "source": "https://www.coalitioninc.com/brokers/broker-iq",
-      "feed_url": "https://www.coalitioninc.com/brokers/broker-iq",
+      "source": "https://www.coalitioninc.com/blog/coalition-apis-helping-power-the-future-of-insurance-distribution",
+      "feed_url": "https://www.coalitioninc.com/blog/coalition-apis-helping-power-the-future-of-insurance-distribution",
       "title": "",
       "saved": 0,
       "method": "none"
     },
     {
-      "source": "https://www.coalitioninc.com/announcements",
-      "error": "HTTPError"
+      "source": "https://www.coalitioninc.com/blog",
+      "feed_url": "https://www.coalitioninc.com/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://www.coalitioninc.com/brokers/broker-iq",
+      "feed_url": "https://www.coalitioninc.com/brokers/broker-iq",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
   "post_count": 6,
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "agent_pulled": "2026-07-04",
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",

@@ -59,6 +59,23 @@ tags:
 - Threat Intelligence
 - Incident Response
 - Attack Surface Management
+- Brokerage
+- MGA
+- Executive Risks
+- Technology E&O
+- Active Insurance
+tags_raw:
+- Cyber Insurance
+- Insurance
+- Insurtech
+- Risk Management
+- Cybersecurity
+- Vulnerability Management
+- CVE
+- Exploit Scoring
+- Threat Intelligence
+- Incident Response
+- Attack Surface Management
 - Brokers
 - MGA
 - Executive Risks
@@ -85,7 +102,7 @@ apis:
   - Quotes
   - Bind
   - Policy
-  - Brokers
+  - Brokerage
   - Webhook
   tags_raw:
   - Cyber Insurance

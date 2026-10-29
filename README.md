@@ -1,4 +1,4 @@
-# Coalition (coalition-inc)
+# Coalition
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,124 +66,162 @@
 
 Coalition is a San Francisco–headquartered cyber insurance and active risk management provider founded in 2017 by Joshua Motta (CEO) and John Hering. Coalition pairs commercial insurance lines — Cyber, Technology Errors & Omissions, Executive Risks (D&O, EPL, Fiduciary, Crime), Miscellaneous Professional Liability, and AI coverage — with a continuous attack-surface monitoring and incident-response platform (Coalition Control, Wirespeed ADR, Coalition Incident Response, Security Awareness Training). The company's underwriting engine is exposed to brokers and distribution partners through the Coalition Active Insurance API, a RESTful surface that supports rate, quote, bind, document generation, renewals, and webhook events across the United States and Canada, with executive risks APIs and additional product lines added over time. Coalition also publishes a public Exploit Scoring System (ESS) API at ess-api.coalitioninc.com that exposes CVE detail, ESS/EPSS/CVSS scoring, exploit references (ExploitDB, Metasploit), GitHub repository signals, and Twitter mention timelines for over 200,000 vulnerabilities. Coalition is backed by Allianz X, Valor Equity Partners, Ribbit Capital, Mitsui Sumitomo, Kinetic Partners and other strategic insurers (Allianz, Arch, Ascot, Zurich, Swiss Re, Lloyd's syndicates); it raised a $250M Series F in 2022 at a $5B valuation. The Active Insurance API is partner-gated (no public OpenAPI), but the ESS API is fully public with OpenAPI 3.1, an interactive docs UI, and ReDoc.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/coalition-inc/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/coalition-inc/refs/heads/main/apis.yml)
+**Areas:** Cyber Insurance · Insurance · Insurtech · Risk Management · Cybersecurity · Vulnerability Management · CVE · Exploit Scoring · Threat Intelligence · Incident Response · Attack Surface Management · Brokerage
 
-## Scope
+## Coalition on APIs.io
 
-- **Type:** Index
-- **Position:** Provider
-- **Access:** 3rd-Party
+Everything profiled for Coalition is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/coalition-inc/](https://apis.io/providers/coalition-inc/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (2)
 
-- Cyber Insurance
-- Insurance
-- Insurtech
-- Risk Management
-- Cybersecurity
-- Vulnerability Management
-- CVE
-- Exploit Scoring
-- Threat Intelligence
-- Incident Response
-- Attack Surface Management
-- Brokers
-- MGA
-- Executive Risks
-- Technology E&O
-- Active Insurance
+- [Coalition Active Insurance API](https://apis.io/apis/coalition-inc/active-insurance-api/) — Partner-gated REST API that brokers and distribution partners use to rate, quote, bind, generate documents (quote PDF, Coalition Risk Assessment, signature…
+- [Coalition Cve API](https://apis.io/apis/coalition-inc/coalition-inc-cve-api/) — The Cve API from Coalition — 7 operation(s) for cve.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Coalition Exploit Scoring System (ESS) API
+GraphQL schemas.
 
-Public REST API exposing Coalition's machine-learning Exploit Scoring System over more than 200,000 CVEs. Returns vulnerability detail, ESS / EPSS / CVSS score summaries, ESS shift history, public exploit references (ExploitDB, Metasploit), GitHub repository mentions and keyword extraction, and Twitter mention timelines. Useful for vulnerability triage, prioritization, and threat-intel enrichment.
+- [Moved to /providers/coalition-inc/](https://apis.io/graphqls/coalition-inc/coalition-inc-graphql/)
 
-- **Human URL:** [https://ess.coalitioninc.com](https://ess.coalitioninc.com)
-- **Base URL:** `https://ess-api.coalitioninc.com`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- CVE
-- Vulnerability
-- Exploit Scoring
-- Threat Intelligence
-- Cybersecurity
+- [Coalition Inc Agentic Access](https://apis.io/agentic-access/coalition-inc/coalition-inc-agentic-access/)
 
-#### Properties
+#### JSON Schema (1)
 
-- [Documentation](https://ess-api.coalitioninc.com/docs)
-- [Re Doc](https://ess-api.coalitioninc.com/redoc)
-- [OpenAPI](https://ess-api.coalitioninc.com/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Local Open A P I](openapi/coalition-ess-openapi.yml)
-- [Console](https://ess.coalitioninc.com/explore/)
-- [Spectral Rules](rules/coalition-ess-rules.yml)
-- [JSON Schema](json-schema/coalition-ess-cve-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/coalition-ess-cve-structure.json)
-- [Example](examples/coalition-ess-listCves-example.json)
-- [Example](examples/coalition-ess-getCve-example.json)
-- [Example](examples/coalition-ess-getEssHistory-example.json)
-- [Example](examples/coalition-ess-listGithubRepos-example.json)
-- [Postman Collection](collections/coalition-ess.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/coalition-ess.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The data models the API reads and writes.
 
-### Coalition Active Insurance API
+- [Coalition ESS CVE](https://apis.io/schemas/coalition-inc/coalition-ess-cve/)
 
-Partner-gated REST API that brokers and distribution partners use to rate, quote, bind, generate documents (quote PDF, Coalition Risk Assessment, signature bundle, specimen policy), and manage renewals for Coalition's commercial insurance lines — Cyber, Technology E&O, Executive Risks (D&O, EPL, Fiduciary, Crime), Miscellaneous Professional Liability, and AI coverage. Supports webhook events and ships with a sandbox environment, dedicated implementation manager, and QA test plans. Coverage spans the United States and Canada, with a 99.9% uptime SLA and sub-2-second quote response target. Documentation is provisioned to vetted partners; no public OpenAPI is published.
+#### JSON Structure (1)
 
-- **Human URL:** [https://www.coalitioninc.com/brokers/api](https://www.coalitioninc.com/brokers/api)
+Data models expressed in JSON Structure.
 
-#### Tags
+- [Coalition Ess Cve Structure](https://apis.io/json-structure/coalition-inc/coalition-ess-cve-structure/)
 
-- Cyber Insurance
-- Quote
-- Bind
-- Policy
-- Brokers
-- Webhooks
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Sign Up](https://web.coalitioninc.com/partnership.html)
-- [Overview](https://www.coalitioninc.com/brokers/api)
-- [Broker Portal](https://www.coalitioninc.com/brokers/broker-iq)
-- [Blog](https://www.coalitioninc.com/blog/coalition-apis-helping-power-the-future-of-insurance-distribution)
-- [Announcement](https://www.coalitioninc.com/announcements/coalition-launches-new-API-solution-for-streamlined-partner-integration)
-- [Announcement](https://www.coalitioninc.com/announcements/coalition-introduces-new-apis-to-power-executive-risks-insurance)
-- [Postman Collection](collections/coalition-ess.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/coalition-ess.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Coalition Inc Context](https://apis.io/jsonld/coalition-inc/coalition-inc-context/)
 
-## Common Properties
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Coalition Vocabulary](https://apis.io/vocabularies/coalition-inc/coalition-inc-vocabulary/)
+
+#### Examples (4)
+
+Example requests and responses.
+
+- [Coalition Ess Getcve Example](https://apis.io/examples/coalition-inc/coalition-ess-getCve-example/)
+- [Coalition Ess Getesshistory Example](https://apis.io/examples/coalition-inc/coalition-ess-getEssHistory-example/)
+- [Coalition Ess Listcves Example](https://apis.io/examples/coalition-inc/coalition-ess-listCves-example/)
+- [Coalition Ess Listgithubrepos Example](https://apis.io/examples/coalition-inc/coalition-ess-listGithubRepos-example/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [Coalition Exploit Scoring System API](https://apis.io/collections/coalition-inc/open-coalition-ess/)
+- [Coalition Exploit Scoring System Cve API](https://apis.io/collections/coalition-inc/open-coalition-inc-cve-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Coalition — coalition ess rules](https://apis.io/rules/coalition-inc/coalition-ess-rules/)
+- [Coalition — jsonschema rules](https://apis.io/rules/coalition-inc/coalition-inc-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Coalition Inc Domain Security](https://apis.io/security/coalition-inc/coalition-inc-domain-security/)
+- [Coalition Inc Vulnerability Disclosure](https://apis.io/security/coalition-inc/coalition-inc-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Coalition Inc Plans Pricing](https://apis.io/plans/coalition-inc/coalition-inc-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Coalition Inc Rate Limits](https://apis.io/rate-limits/coalition-inc/coalition-inc-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Coalition Inc Finops](https://apis.io/finops/coalition-inc/coalition-inc-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.coalitioninc.com)
-- [About](https://www.coalitioninc.com/about)
-- [Products](https://www.coalitioninc.com/cyber-insurance)
-- [Control](https://www.coalitioninc.com/control)
-- [Security](https://www.coalitioninc.com/security)
-- [Exploit Scoring System](https://ess.coalitioninc.com)
-- [Broker I Q](https://www.coalitioninc.com/brokers/broker-iq)
-- [A P I](https://www.coalitioninc.com/brokers/api)
-- [Partners](https://www.coalitioninc.com/serviceproviders)
-- [Partnership](https://web.coalitioninc.com/partnership.html)
-- [Newsroom](https://www.coalitioninc.com/newsroom)
-- [Announcements](https://www.coalitioninc.com/announcements)
 - [Blog](https://www.coalitioninc.com/blog)
-- [Knowledge Center](https://www.coalitioninc.com/knowledge-center)
-- [Help Center](https://help.coalitioninc.com)
-- [Careers](https://www.coalitioninc.com/careers)
-- [Contact](https://www.coalitioninc.com/contact)
-- [LinkedIn](https://www.linkedin.com/company/coalitioninc)
-- [Twitter](https://twitter.com/SolveCyberRisk)
-- [YouTube](https://www.youtube.com/channel/UCoc7ed_HZrl-Ln4ZCnDsuZA)
-- [Facebook](https://www.facebook.com/coalitioninc)
-- [Instagram](https://www.instagram.com/coalitioninc)
+- [Security](https://www.coalitioninc.com/security)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 33.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 58.0 |
+| Contract quality | 59.0 |
+| Contract governance | 13.6 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 21.1 |
+
+**Agent readiness 25.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | verified |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 14.9** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/coalition-inc/](https://apis.io/providers/coalition-inc/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Coalition: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/coalition-inc/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
